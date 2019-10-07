@@ -1,0 +1,13 @@
+simulation_id,time_step,A,B,C
+simulation_1,0,0_,1_,0
+simulation_1,1,0_,1_,1
+simulation_1,2,0_,1_,1
+simulation_1,3,0_,1_,1
+simulation_1,4,0_,1_,1
+simulation_1,5,0_,1_,1
+simulation_2,0,0_,1_,1
+simulation_2,1,0_,1_,1
+simulation_2,2,0_,1_,1
+simulation_2,3,0_,1_,1
+simulation_2,4,0_,1_,1
+simulation_2,5,0_,1_,1

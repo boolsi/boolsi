@@ -1,0 +1,18 @@
+nodes:
+- A
+- B
+- C
+
+update rules:
+    A: not B
+    B: A and C
+    C: not A or B
+
+initial state:
+    A: 0
+    B: 1
+    C: any
+
+fixed nodes:
+    A: 0
+    B: 1

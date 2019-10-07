@@ -1,0 +1,17 @@
+16-Aug-2019 15:58:20 Hi! All BoolSi output (including this log) will appear in "/Users/user/PycharmProjects/boolsi/examples/output8_cambium2".
+16-Aug-2019 15:58:20 Run parameters: "attract examples/cambium2.yaml -o examples/output8_cambium2 --print-svg --no-pdf".
+16-Aug-2019 15:58:20 Initializing temporary storage in "/Users/user/PycharmProjects/boolsi/.tmp_storage/".
+16-Aug-2019 15:58:21 Read Boolean network of 30 nodes.
+16-Aug-2019 15:58:21 63 worker processes will be used to find attractors from 1073741824 initial conditions...
+16-Aug-2019 15:58:21 Performing simulations... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:06:59 Collecting results... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:08 Found 39 attractors.
+18-Aug-2019 13:07:08 Sorting attractors... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:08 Restructuring attractors... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:08 Reading attractors to compute node correlations... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:08 Computing node correlations...
+18-Aug-2019 13:07:09 Printing node correlations to "node_correlations.svg" and "node_correlations.csv"...
+18-Aug-2019 13:07:14 Preprocessing attractors for graphic output... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:16 Printing attractors to "attractors_SVG/", "attractor_summaries.csv/", and "attractors.csv/"... (see progressbar in "output8_cambium2/progress.txt").
+18-Aug-2019 13:07:38 Terminating...
+18-Aug-2019 13:07:38 All BoolSi output is located in "/Users/user/PycharmProjects/boolsi/examples/output8_cambium2/". Bye!

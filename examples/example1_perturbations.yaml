@@ -1,0 +1,21 @@
+nodes:
+- A
+- B
+- C
+
+update rules:
+    A: not B
+    B: A and C
+    C: not A or B
+
+initial state:
+    A: 0
+    B: 1
+    C: any
+
+perturbations:
+    A:
+        0: 4
+        1: 5
+    B:
+        1: 1-3, 5

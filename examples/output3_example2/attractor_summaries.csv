@@ -1,0 +1,3 @@
+attractor_id,length,trajectory_length_mean,trajectory_length_SD,relative_frequency
+attractor_1,3,0.7142857143,0.7559289460184545,0.875
+attractor_2,1,0,nan,0.125

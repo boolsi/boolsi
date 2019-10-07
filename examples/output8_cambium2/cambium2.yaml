@@ -1,0 +1,102 @@
+nodes:
+    - CK0
+    - CK
+    - AHK
+    - AHP
+    - BARR
+    - IPT
+    - PIN
+    - CKX
+    - AARR
+    - ERF
+    - AHP6
+    - TDIF
+    - PXY
+    - IAA0
+    - IAA
+    - BR
+    - BZR1
+    - STM
+    - GA
+    - GID1
+    - ETHL
+    - ARF
+    - HB8
+    - TMO5
+    - WOX4
+    - LOG3
+    - DELL
+    - WRKY
+    - LHW
+    - ENDO
+
+update rules:
+    CK: majority(CK0, IPT, LOG3, not CKX, 0)
+    CKX: majority(ARF, BARR, not WRKY, STM, 0)
+    AHK: CK
+    AHP: AHK and (not AHP6 or not AARR)
+    BARR: AHP
+    AARR: BARR and not ARF
+    WOX4: PXY or ERF
+    PXY: TDIF and ARF
+    TDIF: TDIF
+    ARF: IAA
+    AHP6: not BARR and ARF
+    IPT: majority(BARR, not ARF, 1)
+    IAA: IAA0 and not PIN
+    PIN: BARR and not ENDO
+    HB8: ARF and BZR1
+    BR: BR
+    ERF: ETHL and (BARR or WRKY)
+    DELL: not IAA and not GID1
+    WRKY: BZR1
+    GID1: GA
+    STM: ARF and not BR
+    BZR1: BR and not DELL
+    GA: GA
+    LHW: not STM
+    TMO5: LHW and ARF
+    LOG3: TMO5
+    ENDO: not IAA
+    CK0: CK0
+    IAA0: IAA0
+    ETHL: ETHL
+
+initial state:
+    CK0: any
+    CK: any
+    AHK: any
+    AHP: any
+    BARR: any
+    IPT: any
+    PIN: any
+    CKX: any
+    AARR: any
+    ERF: any
+    AHP6: any
+    TDIF: any
+    PXY: any
+    IAA0: any
+    IAA: any
+    BR: any
+    BZR1: any
+    STM: any
+    GA: any
+    GID1: any
+    ETHL: any
+    ARF: any
+    HB8: any
+    TMO5: any
+    WOX4: any
+    LOG3: any
+    DELL: any
+    WRKY: any
+    LHW: any
+    ENDO: any
+
+fixed nodes:
+    TDIF: 0
+
+perturbations:
+    ETHL:
+        1: 2-5

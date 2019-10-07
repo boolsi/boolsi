@@ -1,0 +1,19 @@
+nodes:
+- A
+- B
+- C
+
+update rules:
+    A: not B
+    B: A and C
+    C: not A or B
+
+initial state:
+    A: any
+    B: any
+    C: any
+
+target state:
+    A: 1
+    B: 0
+    C: any

@@ -1,0 +1,99 @@
+nodes:
+ - $\hspace{0.01}$
+ - $\hspace{0.02}$
+ - $\hspace{0.03}$
+ - $\hspace{0.04}$
+ - $\hspace{0.05}$
+ - time
+ - $\hspace{0.06}$
+ - $\hspace{0.07}$
+ - $\hspace{0.08}$
+ - $\hspace{0.09}$
+ - $\hspace{0.10}$
+ - is
+ - $\hspace{0.11}$
+ - $\hspace{0.12}$
+ - $\hspace{0.13}$
+ - $\hspace{0.14}$
+ - $\hspace{0.15}$
+ - a
+ - $\hspace{0.16}$
+ - $\hspace{0.17}$
+ - $\hspace{0.18}$
+ - $\hspace{0.19}$
+ - $\hspace{0.20}$
+ - construct
+ - $\hspace{0.21}$
+ - $\hspace{0.22}$
+ - $\hspace{0.23}$
+ - $\hspace{0.24}$
+ - $\hspace{0.25}$
+
+update rules:
+ $\hspace{0.01}$: $\hspace{0.07}$ and not $\hspace{0.08}$
+ $\hspace{0.02}$: $\hspace{0.01}$
+ $\hspace{0.03}$: not $\hspace{0.18}$
+ $\hspace{0.04}$: 0
+ $\hspace{0.05}$: 0
+ time: 1
+ $\hspace{0.06}$: 0
+ $\hspace{0.07}$: not $\hspace{0.07}$
+ $\hspace{0.08}$: ($\hspace{0.07}$ and not $\hspace{0.08}$) or (not $\hspace{0.07}$ and $\hspace{0.08}$)
+ $\hspace{0.09}$: $\hspace{0.07}$ and not $\hspace{0.08}$
+ $\hspace{0.10}$: 0
+ is: 1
+ $\hspace{0.11}$: 0
+ $\hspace{0.12}$: $\hspace{0.01}$
+ $\hspace{0.13}$: not $\hspace{0.13}$
+ $\hspace{0.14}$: ($\hspace{0.07}$ and not $\hspace{0.08}$) or (not $\hspace{0.07}$ and $\hspace{0.08}$)
+ $\hspace{0.15}$: 0
+ a: 1
+ $\hspace{0.16}$: 0
+ $\hspace{0.17}$: $\hspace{0.13}$ and not $\hspace{0.14}$
+ $\hspace{0.18}$: $\hspace{0.19}$
+ $\hspace{0.19}$: ($\hspace{0.07}$ and not $\hspace{0.08}$) or (not $\hspace{0.07}$ and $\hspace{0.08}$)
+ $\hspace{0.20}$: 0
+ construct: 1
+ $\hspace{0.21}$: 0
+ $\hspace{0.22}$: $\hspace{0.01}$
+ $\hspace{0.23}$: $\hspace{0.22}$
+ $\hspace{0.24}$: $\hspace{0.03}$
+ $\hspace{0.25}$: 0
+
+initial state:
+ $\hspace{0.01}$: 0
+ $\hspace{0.02}$: 0
+ $\hspace{0.03}$: 0
+ $\hspace{0.04}$: 0
+ $\hspace{0.05}$: 0
+ time: 0
+ $\hspace{0.06}$: 0
+ $\hspace{0.07}$: 0
+ $\hspace{0.08}$: 0
+ $\hspace{0.09}$: 0
+ $\hspace{0.10}$: 0
+ is: 0
+ $\hspace{0.11}$: 0
+ $\hspace{0.12}$: 0
+ $\hspace{0.13}$: 0
+ $\hspace{0.14}$: 0
+ $\hspace{0.15}$: 0
+ a: 0
+ $\hspace{0.16}$: 0
+ $\hspace{0.17}$: 0
+ $\hspace{0.18}$: 0
+ $\hspace{0.19}$: 0
+ $\hspace{0.20}$: 0
+ construct: 0
+ $\hspace{0.21}$: 0
+ $\hspace{0.22}$: 0
+ $\hspace{0.23}$: 0
+ $\hspace{0.24}$: 0
+ $\hspace{0.25}$: 0
+
+fixed nodes:
+ time: 0
+ is: 0
+ a: 0
+ construct: 0
+
