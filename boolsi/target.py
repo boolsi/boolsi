@@ -56,7 +56,7 @@ def target_master(mpi_comm,
         'all' if n_simulations_to_reach_target_substate is inf else n_simulations_to_reach_target_substate
 
     logging.getLogger().info(
-        '{} will be used to perform {} simulations and find {} that reach target state.'.format(
+        '{} will be used to perform {} simulations and find {} that reach target states.'.format(
             n_processes_text, n_simulation_problems, n_simulations_to_reach_target_substate_text))
 
     _write_simulations_to_db = partial(

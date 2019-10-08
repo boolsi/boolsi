@@ -1,4 +1,2 @@
 simulation_id,length,A_is_fixed,B_is_fixed,C_is_fixed,n_A_perturbations,n_B_perturbations,n_C_perturbations
-simulation_1,0,0,0,0,0,0,0
-simulation_2,0,0,0,0,0,0,0
-simulation_3,1,0,0,0,0,0,0
+simulation_1,1,0,0,0,0,0,0

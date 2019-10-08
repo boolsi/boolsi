@@ -649,7 +649,7 @@ def parse_raw_input_target_state(raw_input_target_state, node_names, mode):
 
                 raise ValueError(err_msg)
 
-        _, target_substate_code = encode_state(dummy_target_state, target_node_set)
+        _, target_substate_code = encode_state(target_node_set, dummy_target_state)
 
         return target_substate_code, target_node_set
 

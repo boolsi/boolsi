@@ -169,7 +169,10 @@ will find all attractors and calculate correlations between the node states ther
 
 ### Example 3. Find simulations that reach target states of a network
 
-If we want to find conditions that lead to the states where `A` is `1` and `B` is `0`, we first need to specify them as target states. For this, we create input file `example3.yaml` with added section `target state`.
+If we want to find conditions that lead to the states where `A` is `1` 
+and `B` is `0`, we first need to specify them as target states. For 
+this, we create input file `example3.yaml` with added section 
+`target state` and initial state of `A` set to `1`.
  
 ```
 nodes:
@@ -183,13 +186,13 @@ update rules:
     C: not A or B
     
 initial state:
-    A: any
+    A: 1
     B: any
     C: any
    
 target state:
-    A: 1
-    B: 0
+    A: 0
+    B: 1
     C: any
 ```
 
