@@ -74,7 +74,7 @@ To run BoolSi using MPI:
 
 Note that forceful termination in MPI (Abort) does not guarantee graceful shutdown of an application. 
 As a consequence, aborting MPI run on Windows or in `attract` mode without the flag `-i`
-may leave orphaned files in the database directory (defaults to "<current directory>/tmp_db"). 
+may leave orphaned files in the database directory (defaults to "\<current directory\>/tmp_db"). 
 ## Quickstart
 
 BoolSi provides 3 terminal commands to simulate boolean networks:
