@@ -1,6 +1,6 @@
-16-Aug-2019 15:58:20 Hi! All BoolSi output (including this log) will appear in "/Users/user/PycharmProjects/boolsi/examples/output8_cambium2".
+16-Aug-2019 15:58:20 Hi! All BoolSi output (including this log) will appear in "/Users/user/boolsi/examples/output8_cambium2".
 16-Aug-2019 15:58:20 Run parameters: "attract examples/cambium2.yaml -o examples/output8_cambium2 --print-svg --no-pdf".
-16-Aug-2019 15:58:20 Initializing temporary storage in "/Users/user/PycharmProjects/boolsi/.tmp_storage/".
+16-Aug-2019 15:58:20 Initializing temporary storage in "/Users/user/boolsi/tmp_db/".
 16-Aug-2019 15:58:21 Read Boolean network of 30 nodes.
 16-Aug-2019 15:58:21 63 worker processes will be used to find attractors from 1073741824 initial conditions...
 16-Aug-2019 15:58:21 Performing simulations... (see progressbar in "output8_cambium2/progress.txt").
@@ -14,4 +14,4 @@
 18-Aug-2019 13:07:14 Preprocessing attractors for graphic output... (see progressbar in "output8_cambium2/progress.txt").
 18-Aug-2019 13:07:16 Printing attractors to "attractors_SVG/", "attractor_summaries.csv/", and "attractors.csv/"... (see progressbar in "output8_cambium2/progress.txt").
 18-Aug-2019 13:07:38 Terminating...
-18-Aug-2019 13:07:38 All BoolSi output is located in "/Users/user/PycharmProjects/boolsi/examples/output8_cambium2/". Bye!
+18-Aug-2019 13:07:38 All BoolSi output is located in "/Users/user/boolsi/examples/output8_cambium2/". Bye!
