@@ -51,7 +51,7 @@ def test_parse_input_A():
         with open(input_file_name, "w") as input_file:
             input_file.write(input_text)
 
-        config = parse_input(input_file_name, 10, Mode.EVOLVE)
+        config = parse_input(input_file_name, 10, Mode.SIMULATE)
         os.remove(input_file_name)
 
         test_description = generate_test_description(
@@ -360,9 +360,9 @@ def test_parse_raw_input_perturbations_A():
     """
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
     # Test for {no simulation time cap, simulation time cap}.
     max_t_1 = inf
     max_t_2 = 15
@@ -396,7 +396,7 @@ def test_parse_raw_input_perturbations_A():
         [any_node_state_perturbations_kvpairs_1, any_node_state_perturbations_kvpairs_2],
         [maybe_any_node_state_perturbations_kvpairs_1, maybe_any_node_state_perturbations_kvpairs_2]):
 
-        if mode == Mode.CONVERGE and \
+        if mode == Mode.ATTRACT and \
                 (maybe_zero_node_state_perturbations_kvpairs or maybe_one_node_state_perturbations_kvpairs
                  or any_node_state_perturbations_kvpairs or maybe_any_node_state_perturbations_kvpairs):
             continue
@@ -448,9 +448,9 @@ def test_parse_raw_input_perturbations_B():
     node_names = ['A']
     max_t = None
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -468,9 +468,9 @@ def test_parse_raw_input_perturbations_C():
     node_names = ['A']
     max_t = None
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -487,9 +487,9 @@ def test_parse_raw_input_perturbations_D():
     node_names = ['A']
     max_t = inf
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -506,9 +506,9 @@ def test_parse_raw_input_perturbations_E():
     node_names = ['A']
     max_t = inf
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -526,9 +526,9 @@ def test_parse_raw_input_perturbations_F():
     node_names = ['A']
     max_t = inf
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -547,9 +547,9 @@ def test_parse_raw_input_perturbations_G():
     max_t_1 = inf
     max_t_2 = 666
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode, max_t in product([mode_1, mode_2, mode_3], [max_t_1, max_t_2]):
         test_description = generate_test_description(locals(), 'mode', 'max_t')
@@ -568,9 +568,9 @@ def test_parse_raw_input_perturbations_H():
     max_t_1 = inf
     max_t_2 = 666
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode, max_t in product([mode_1, mode_2, mode_3], [max_t_1, max_t_2]):
         test_description = generate_test_description(locals(), 'mode', 'max_t')
@@ -587,9 +587,9 @@ def test_parse_raw_input_perturbations_I():
     node_names = ['A']
     max_t = 10
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -607,9 +607,9 @@ def test_parse_raw_input_perturbations_J():
     max_t_1 = inf
     max_t_2 = 666
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
     # Test for {'0', '1', '0?', '1?', 'any', 'any?'}.
     node_state_1 = '0'
     node_state_2 = '1'
@@ -623,7 +623,7 @@ def test_parse_raw_input_perturbations_J():
             [mode_1, mode_2, mode_3], [max_t_1, max_t_2], node_states):
         # Test for {'0', '1', '0?', '1?', 'any', 'any?'} - {node_state}.
         for another_node_state in set(node_states) - {node_state}:
-            if mode != Mode.CONVERGE or {node_state, another_node_state}.issubset({'0', '1'}):
+            if mode != Mode.ATTRACT or {node_state, another_node_state}.issubset({'0', '1'}):
                 raw_input_perturbations = {'A': {node_state: '5', another_node_state: '5'}}
 
                 test_description = generate_test_description(
@@ -654,7 +654,7 @@ def test_parse_raw_input_perturbations_K():
 
         test_description = generate_test_description(locals(), 'max_t', 'node_state')
         with pytest.raises(ValueError):
-            parse_raw_input_perturbations(raw_input_perturbations, node_names, Mode.CONVERGE, max_t)
+            parse_raw_input_perturbations(raw_input_perturbations, node_names, Mode.ATTRACT, max_t)
 
 
 def test_parse_raw_input_perturbations_L():
@@ -667,9 +667,9 @@ def test_parse_raw_input_perturbations_L():
     node_names = ['A']
     max_t = 10
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -686,9 +686,9 @@ def test_parse_raw_input_perturbations_X():
     node_names = ['A']
     max_t = 10
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     expected_perturbed_nodes_by_t = dict()
     expected_perturbations_variations = []
@@ -709,9 +709,9 @@ def test_parse_raw_input_fixed_nodes_A():
     """
     node_names = ['A', 'B', 'C', 'D', 'E', 'F']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
     # Test for {no '0' fixed nodes, '0' fixed nodes}.
     zero_node_state_fixed_nodes_kvpairs_1 = []
     zero_node_state_fixed_nodes_kvpairs_2 = [('A', '0')]
@@ -742,7 +742,7 @@ def test_parse_raw_input_fixed_nodes_A():
         [any_node_state_fixed_nodes_kvpairs_1, any_node_state_fixed_nodes_kvpairs_2],
         [maybe_any_node_state_fixed_nodes_kvpairs_1, maybe_any_node_state_fixed_nodes_kvpairs_2]):
 
-        if mode == Mode.CONVERGE and \
+        if mode == Mode.ATTRACT and \
                 (maybe_zero_node_state_fixed_nodes_kvpairs or maybe_one_node_state_fixed_nodes_kvpairs
                  or any_node_state_fixed_nodes_kvpairs or maybe_any_node_state_fixed_nodes_kvpairs):
             continue
@@ -790,9 +790,9 @@ def test_parse_raw_input_fixed_nodes_B():
     raw_input_fixed_nodes = '5'
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -808,9 +808,9 @@ def test_parse_raw_input_fixed_nodes_C():
     raw_input_fixed_nodes = {'A': '1', ' A': '1'}
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -826,9 +826,9 @@ def test_parse_raw_input_fixed_nodes_D():
     raw_input_fixed_nodes = {'B': '1'}
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -844,9 +844,9 @@ def test_parse_raw_input_fixed_nodes_E():
     raw_input_fixed_nodes = {'A': [1]}
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -872,7 +872,7 @@ def test_parse_raw_input_fixed_nodes_F():
 
         test_description = generate_test_description(locals(), 'node_state')
         with pytest.raises(ValueError, message=test_description):
-            parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, Mode.CONVERGE)
+            parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, Mode.ATTRACT)
 
 
 def test_parse_raw_input_fixed_nodes_G():
@@ -883,9 +883,9 @@ def test_parse_raw_input_fixed_nodes_G():
     raw_input_fixed_nodes = {'A': 'a'}
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
@@ -901,9 +901,9 @@ def test_parse_raw_input_fixed_nodes_X():
     raw_input_fixed_nodes = None
     node_names = ['A']
     # Test for {Simulate mode, Attract mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
-    mode_3 = Mode.TRANSIT
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
+    mode_3 = Mode.TARGET
 
     expected_fixed_nodes = dict()
     expected_fixed_nodes_variations = []
@@ -929,7 +929,7 @@ def test_parse_raw_input_target_state_A():
     expected_target_node_set = {0}
 
     target_subcode, target_node_set = parse_raw_input_target_state(raw_input_target_state,
-                                                                   node_names, Mode.TRANSIT)
+                                                                   node_names, Mode.TARGET)
 
     assert expected_target_subcode == target_subcode
     assert expected_target_node_set == target_node_set
@@ -943,8 +943,8 @@ def test_parse_raw_input_target_state_B():
     raw_input_target_state = {'A': '0', 'B': 'aNy'}
     node_names = ['A', 'B']
     # Test for {Simulate mode, Target mode}.
-    mode_1 = Mode.EVOLVE
-    mode_2 = Mode.CONVERGE
+    mode_1 = Mode.SIMULATE
+    mode_2 = Mode.ATTRACT
 
     expected_target_subcode = None
     expected_target_node_set = None
@@ -967,7 +967,7 @@ def test_parse_raw_input_target_state_C():
     node_names = ['A']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_D():
@@ -980,7 +980,7 @@ def test_parse_raw_input_target_state_D():
     node_names = ['A']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_E():
@@ -992,7 +992,7 @@ def test_parse_raw_input_target_state_E():
     node_names = ['A']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_F():
@@ -1004,7 +1004,7 @@ def test_parse_raw_input_target_state_F():
     node_names = ['A', 'B']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_G():
@@ -1016,7 +1016,7 @@ def test_parse_raw_input_target_state_G():
     node_names = ['A']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_H():
@@ -1035,7 +1035,7 @@ def test_parse_raw_input_target_state_H():
 
         test_description = generate_test_description(locals(), 'node_state')
         with pytest.raises(ValueError, message=test_description):
-            parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+            parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_I():
@@ -1047,7 +1047,7 @@ def test_parse_raw_input_target_state_I():
     node_names = ['A']
 
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TRANSIT)
+        parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_J():
@@ -1056,7 +1056,7 @@ def test_parse_raw_input_target_state_J():
     Feature J: raising exception for missing target state in Target mode.
     """
     with pytest.raises(ValueError):
-        parse_raw_input_target_state(None, ['A'], Mode.TRANSIT)
+        parse_raw_input_target_state(None, ['A'], Mode.TARGET)
 
 
 def test_parse_raw_input_target_state_K():
@@ -1064,7 +1064,7 @@ def test_parse_raw_input_target_state_K():
     `parse_raw_input_target_state`
     Feature K: ignoring target state in non-Target modes.
     """
-    for mode in [Mode.EVOLVE, Mode.CONVERGE]:
+    for mode in [Mode.SIMULATE, Mode.ATTRACT]:
         target_substate_code, target_node_set = parse_raw_input_target_state({'A': '1'}, ['A'], mode)
 
         test_description = generate_test_description(locals(), 'mode')

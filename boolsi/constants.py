@@ -12,12 +12,12 @@ class Mode(Enum):
     """
     BoolSi modes.
     """
-    EVOLVE = 0
-    CONVERGE = 1
-    TRANSIT = 2
+    SIMULATE = 0
+    ATTRACT = 1
+    TARGET = 2
 
 
-mode_descriptions = {Mode.EVOLVE: 'evolve', Mode.CONVERGE: 'converge', Mode.TRANSIT: 'transit'}
+mode_descriptions = {Mode.SIMULATE: 'simulate', Mode.ATTRACT: 'attract', Mode.TARGET: 'target'}
 
 
 class NodeStateRange(Enum):

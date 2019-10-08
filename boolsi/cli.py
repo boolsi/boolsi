@@ -193,7 +193,7 @@ def simulate(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_direc
     if mpi_comm.rank == 0:
         # Current process is master.
 
-        input_cfg = process_input(input_file, output_directory, simulation_time, Mode.EVOLVE)
+        input_cfg = process_input(input_file, output_directory, simulation_time, Mode.SIMULATE)
 
         # Perform simulations.
         simulate_master(
@@ -246,7 +246,7 @@ def attract(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_direct
     if mpi_comm.rank == 0:
         # Current process is master.
 
-        input_cfg = process_input(input_file, output_directory, max_simulation_time, Mode.CONVERGE)
+        input_cfg = process_input(input_file, output_directory, max_simulation_time, Mode.ATTRACT)
 
         if no_node_correlations and no_attractor_output:
             logging.getLogger().info(
@@ -308,7 +308,7 @@ def target(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_directo
     if mpi_comm.rank == 0:
         # Current process is master.
 
-        input_cfg = process_input(input_file, output_directory, max_simulation_time, Mode.TRANSIT)
+        input_cfg = process_input(input_file, output_directory, max_simulation_time, Mode.TARGET)
 
         # Find simulations.
         n_simulations = target_master(

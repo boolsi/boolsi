@@ -351,7 +351,7 @@ def parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode):
 
     section_name = "fixed nodes"
     proper_fixed_node_state_text = \
-        constant_node_state_range_text if mode == Mode.CONVERGE else full_node_state_range_text
+        constant_node_state_range_text if mode == Mode.ATTRACT else full_node_state_range_text
     extended_proper_fixed_node_state_msg = \
         proper_fixed_node_state_text + "in {} mode".format(mode_descriptions[mode])
 
@@ -361,7 +361,7 @@ def parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode):
     # Validate that input is a dict.
     if not isinstance(raw_input_fixed_nodes, dict):
         sample_input_fixed_nodes = \
-            "'node2: 0\nnode7: {}\nnode8: 1'".format("1" if mode == Mode.CONVERGE else "any")
+            "'node2: 0\nnode7: {}\nnode8: 1'".format("1" if mode == Mode.ATTRACT else "any")
         err_msg = compile_err_msg(
             "Expected mappings of nodes to their fixed states. Example:\n{}".format(
                 sample_input_fixed_nodes),
@@ -388,7 +388,7 @@ def parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode):
 
         node_state = raw_node_state.strip()
 
-        if mode == Mode.CONVERGE and nonconstant_node_state_pattern.match(node_state):
+        if mode == Mode.ATTRACT and nonconstant_node_state_pattern.match(node_state):
             err_msg = compile_err_msg(
                 "Fixed node state '{}' is forbidden in '{}' mode. Must be {}.".format(
                     node_state.lower(), mode_descriptions[mode], proper_fixed_node_state_text),
@@ -438,9 +438,9 @@ def parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max
         "separated with semicolons. Examples: {}, {}, {}.".format(
             sample_input_times_1, sample_input_times_2, sample_input_times_3)
     node_perturbations_sample_input_1 = "'{{0: {}, {}: {}}}'".format(
-        sample_input_times_1, '1' if mode == Mode.CONVERGE else 'any?', sample_input_times_2)
+        sample_input_times_1, '1' if mode == Mode.ATTRACT else 'any?', sample_input_times_2)
     node_perturbations_sample_input_2 = "'{{{}: {}}}'".format(
-        '1' if mode == Mode.CONVERGE else 'any', sample_input_times_3)
+        '1' if mode == Mode.ATTRACT else 'any', sample_input_times_3)
 
     perturbations_sample_input = "'node2: {{{}}}\nnode7: {{{}}}'".format(
         node_perturbations_sample_input_1, node_perturbations_sample_input_2)
@@ -450,7 +450,7 @@ def parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max
 
     section_name = "perturbations"
     proper_perturbed_node_state_text = \
-        constant_node_state_range_text if mode == Mode.CONVERGE else full_node_state_range_text
+        constant_node_state_range_text if mode == Mode.ATTRACT else full_node_state_range_text
     extended_perturbed_node_state_text = \
         proper_perturbed_node_state_text + "in {} mode".format(mode_descriptions[mode])
     node_perturbations_bad_format_text = \
@@ -533,7 +533,7 @@ def parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max
 
                     raise ValueError(err_msg)
 
-                if mode == Mode.CONVERGE and nonconstant_node_state_pattern.match(node_state):
+                if mode == Mode.ATTRACT and nonconstant_node_state_pattern.match(node_state):
                     err_msg = compile_err_msg(
                         "Perturbed node state '{}' is forbidden in '{}' mode. Must be {}.".format(
                             node_state.lower(), mode_descriptions[mode], proper_perturbed_node_state_text),
@@ -592,7 +592,7 @@ def parse_raw_input_target_state(raw_input_target_state, node_names, mode):
         "Example:\n'node1: 0\nnode2: 1\nnode3: any'"
     proper_node_state_text = limited_node_state_range_text
 
-    if mode == Mode.TRANSIT:
+    if mode == Mode.TARGET:
 
         if raw_input_target_state is None:
 
@@ -655,7 +655,7 @@ def parse_raw_input_target_state(raw_input_target_state, node_names, mode):
 
     elif raw_input_target_state is not None:
         logging.getLogger().warning(
-            "Target state is only used in '{}' mode.".format(mode_descriptions[Mode.TRANSIT]))
+            "Target state is only used in '{}' mode.".format(mode_descriptions[Mode.TARGET]))
 
     return None, None
 
