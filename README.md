@@ -167,10 +167,10 @@ will find all attractors and calculate correlations between the node states ther
 
 <img src="./examples/output3_example2/attractors.pdf.svg"/> <img src="./examples/output3_example2/node_correlations.pdf.svg"/>
 
-### Example 3. Find simulations that reach target states of a network
+### Example 3. Find simulations that reach specific states of a network
 
-If we want to find conditions that lead to the states where `A` is `1` 
-and `B` is `0`, we first need to specify them as target states. For 
+If we want to find conditions that lead to the states where e.g. `A` is `0` 
+and `B` is `1`, we first need to specify them as target states. For 
 this, we create input file `example3.yaml` with added section 
 `target state` and initial state of `A` set to `1`.
  
@@ -200,7 +200,7 @@ Running the command:
 
 `$ boolsi target examples/example3.yaml`
 
-will find all simulations reaching either `A: 1, B: 0, C: 0` or `A: 1, B: 0, C: 1`.
+will find all simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
 
 <img src="./examples/output4_example3/simulations.pdf.svg"/>
 
