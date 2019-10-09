@@ -195,7 +195,7 @@ If we want to find conditions that lead to the states where e.g. `A` is `0`
 and `B` is `1`, we first need to specify them as target states. For 
 this, we create input file `example3.yaml` with added section 
 `target state`. We also set the initial state of `A` to `1` in order to
-omit the trivial result of the network starting in a target state.
+omit the trivial results, when the network starts in a target state.
  
 ```
 nodes:
@@ -314,7 +314,7 @@ To run BoolSi, open the terminal and type:
  
 `boolsi COMMAND [ARGS] [OPTIONS]`
 
-To stop, press `Ctrl+C`.
+You can stop BoolSi at any point by pressing `Ctrl+C`.
 
 ### Commands:
 
@@ -360,7 +360,7 @@ To stop, press `Ctrl+C`.
               
 ### `attract` options
 
-`-t`, `--max-simulation-time` Maximum simulation time. If set, simulation stops after this time step even if attractor was not found. 
+`-t`, `--max-simulation-time` Maximum simulation time. If set, simulation stops after this time step even if an attractor was not reached. 
 
 `-a`, `--max-attractor-length` Maximum length of attractor to look for. If set, attractors longer than this value will be ignored.
 
@@ -374,7 +374,7 @@ To stop, press `Ctrl+C`.
 
 ### `target` options
 
-`-t`, `--max-simulation-time` Maximum simulation time. If set, simulation stops after this time step even if target state wasn't reached.
+`-t`, `--max-simulation-time` Maximum simulation time. If set, simulation stops after this time step even if a target state wasn't reached.
 
 `-n`, `--n-simulations-reaching-target` Stop after this many simulations have reached target state.
 
