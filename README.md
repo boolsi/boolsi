@@ -1,11 +1,18 @@
 # BoolSi
 
-BoolSi is an open-source command line tool for distributed simulations of deterministic Boolean networks with synchronous update.
-It uses MPI standard to allow execution on computational clusters, as well as parallel processing on a single computer.
+BoolSi is an open-source command line tool for distributed simulations 
+of deterministic Boolean networks with synchronous update. It uses MPI 
+standard to allow execution on computational clusters, as well as 
+parallel processing on a single computer.
 
 <img src="./examples/output1_glider/simulations_SVG/simulation_1.svg"/>
 
-BoolSi can simulate from range of initial states of a network, find and analyze network attractors, and find conditions leading to state(s) of interest.  It also allows user to fix the state of any network node for the length of entire simulation (e.g. modeling gene knockout in regulatory networks), or perturb the state of the node at any time step (e.g. modeling sensory input in robotics).
+BoolSi can simulate from a range of initial states of the network, 
+identify and analyze network attractors, and find conditions that lead 
+to specific states of the network. It also allows user to fix the state 
+of any network node for the length of entire simulation (e.g. modeling 
+gene knockout in regulatory networks), or perturb the state of the node 
+at any time step (e.g. modeling sensory input in robotics).
 
 - [Installation](#installation)
     - [Prerequisites](#prerequisites)
@@ -43,18 +50,21 @@ To use BoolSi with MPI you must also install:
 * MPI Implementation (OpenMPI, MPICH)
 * mpi4py Python library (https://mpi4py.readthedocs.io/)
 
-For MPI Implementation installation instructions, please refer to vendor documentation:
+For MPI Implementation installation instructions, please refer to vendor 
+documentation:
 
 * OpenMPI (https://www.open-mpi.org) 
 * MPICH (https://www.mpich.org)
 
-We also expect BoolSi to work with other MPI Implementations, although they have not been tested. 
+We also expect BoolSi to work with other MPI Implementations, although 
+they have not been tested. 
 
 To install mpi4py:
 
     $ pip install mpi4py
 
-All other Python package dependencies will be installed automatically when installing BoolSi.
+All other Python package dependencies will be installed automatically 
+when installing BoolSi.
 
 ### PIP
 
@@ -72,9 +82,11 @@ To run BoolSi using MPI:
 
     $ mpiexec -np [NUMBER OF PROCESSES] boolsi ...
 
-Note that forceful termination in MPI (Abort) does not guarantee graceful shutdown of an application. 
-As a consequence, aborting MPI run on Windows or in `attract` mode without the flag `-i`
-may leave orphaned files in the database directory (defaults to "\<current directory\>/tmp_db"). 
+Note that forceful termination in MPI (Abort) does not guarantee 
+graceful shutdown of an application. 
+As a consequence, aborting MPI run on Windows or in `attract` mode 
+without the flag `-i` may leave orphaned files in the database directory 
+(defaults to "\<current directory\>/tmp_db"). 
 ## Quickstart
 
 BoolSi provides 3 terminal commands to simulate boolean networks:
@@ -83,8 +95,10 @@ BoolSi provides 3 terminal commands to simulate boolean networks:
 - `attract` to find and analyze attractors for correlations between the nodes
 - `target` to find conditions leading to specific states of the network
 
-Each command allows to run simulations from multiple initial states, with a time cap, and overriding update rule (see [Advanced usage](#advanced-usage) for the latter). 
-All flags and arguments for the commands are covered in [Command line reference](#command-line-reference). 
+Each command allows to run simulations from multiple initial states, 
+with a time cap, and overriding update rule (see [Advanced usage](#advanced-usage) 
+for the latter).  All flags and arguments for the commands are covered 
+in [Command line reference](#command-line-reference). 
 
 Commands produce different types of output. 
 `simulate` produces simulations &mdash; lists of states of boolean network from its initial state.
@@ -121,7 +135,9 @@ From the command line, run:
 
 `$ boolsi simulate examples/example1.yaml -t 5`
 
-Because input file `example1.yaml` specifies multiple initial states (by using keyword `any` for node `C`), BoolSi will run separate simulation for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
+Because input file `example1.yaml` specifies multiple initial states (by 
+using keyword `any` for node `C`), BoolSi will run separate simulation 
+for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 
 ```
 18-Aug-2019 20:17:16 Hi! All BoolSi output (including this log) will appear in "/Users/user/PycharmProjects/boolsi/examples/output2_example1/".
@@ -132,15 +148,21 @@ Because input file `example1.yaml` specifies multiple initial states (by using k
 ...
 ```
 
-The above also tells you where to look for the simulations after the run is finished (`/output_20190403T003836/`):
+The above also tells you where to look for the simulations after the run 
+is finished (`/output_20190403T003836/`):
 
 <img src="./examples/output2_example1/simulations.pdf.svg"/>
 
-By default the results are printed in PDF, but other formats are available, including machine-readable CSV (see [Output reference](#output-reference)). 
+By default the results are printed in PDF, but other formats are 
+available, including machine-readable CSV (see [Output reference](#output-reference)). 
 
 ### Example 2. Find and analyze attractors of a network
 
-Input file `example1.yaml` specifies 2 initial states of the network to simulate from. If we want to find all attractors of the network, we need to simulate it from all possible initial states. For this, we create input file `example2.yaml`, where the initial state of every node is set to `any`:
+Input file `example1.yaml` specifies 2 initial states of the network to 
+simulate from. If we want to find all attractors of the network, we need 
+to simulate it from all possible initial states. For this, we create 
+input file `example2.yaml`, where the initial state of every node is set 
+to `any`:
 
 ```
 nodes:
@@ -172,7 +194,8 @@ will find all attractors and calculate correlations between the node states ther
 If we want to find conditions that lead to the states where e.g. `A` is `0` 
 and `B` is `1`, we first need to specify them as target states. For 
 this, we create input file `example3.yaml` with added section 
-`target state` and initial state of `A` set to `1`.
+`target state`. We also set the initial state of `A` to `1` in order to
+omit the trivial result of the network starting in a target state.
  
 ```
 nodes:
@@ -200,17 +223,23 @@ Running the command:
 
 `$ boolsi target examples/example3.yaml`
 
-will find all simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
+will find the simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
 
 <img src="./examples/output4_example3/simulations.pdf.svg"/>
 
 ## Advanced usage
 
-BoolSi allows to override simulation process, which can be used to model external influence on the network. User can fix the state of any node for the entire simulation (e.g. modeling gene knockout in regulatory networks), or perturb it at any time step (e.g. modeling sensory input in robotics).
+BoolSi allows to override simulation process, which can be used to model 
+external influence on the network. User can fix the state of any node 
+for the entire simulation (e.g. modeling gene knockout in regulatory 
+networks), or perturb it at any time step (e.g. modeling sensory input 
+in robotics).
 
 ### Fixed nodes
 
-To permanently fix the state of a node, specify it under `fixed nodes` section of the input file. For example, these lines set the state of node `A` to `0` and `B` to `1` for the entire simulation:
+To permanently fix the state of a node, specify it under `fixed nodes` 
+section of the input file. For example, these lines set the state of 
+node `A` to `0` and `B` to `1` for the entire simulation:
 
 ```
 fixed nodes:
@@ -228,24 +257,30 @@ When running `simulate` or `target`, it is also possible to use `0?`, `1?`, `any
     C: 0?
 ```
 
-`0?` (`1?`) doubles the number of produced simulations by fixing the state of node `C` to `0`(`1`) in addition to simulating with unfixed `C`.
+`0?` (`1?`) doubles the number of produced simulations by fixing the 
+state of node `C` to `0`(`1`) in addition to simulating with unfixed `C`.
 
 
 ```
     C: any
 ```
 
-`any` doubles the number of simulations by fixing the state of `C` separately to `0` and to `1`. 
+`any` doubles the number of simulations by fixing the state of `C` 
+separately to `0` and to `1`. 
 
 ```
     C: any?
 ```
 
-`any?` triples the number of simulations by fixing the  state of `C` separately to `0` and `1`, and simulating with unfixed `C`. 
+`any?` triples the number of simulations by fixing the  state of `C` 
+separately to `0` and `1`, and simulating with unfixed `C`. 
 
 ### Perturbations
 
-To force a node into particular state at particular time step, use `perturbations` section. For example, to set the state of node `A` to `0` at time step `5` and to `1` at time step `6`, and the state of node `B` to `1` at time steps `10, 15, 16, 17, 20`:
+To force a node into particular state at particular time step, use 
+`perturbations` section. For example, to set the state of node `A` to 
+`0` at time step `4` and to `1` at time step `5`, and the state of node 
+`B` to `1` at time steps `1, 2, 3, 5`:
 
 ```
 perturbations:
@@ -258,9 +293,11 @@ perturbations:
 
 <img src="./examples/output6_example1_perturbations/simulations.pdf.svg"/>
 
-Similarly to `fixed nodes`, when running `simulate` or `target`, it is possible to use `0?`, `1?`,`any`, `any?` values. 
-
-Note that lines below increase the number of produced simulations by a factor of 2<sup>4</sup> = 16 because the state to force `C` into (`0` or `1`) is considered independently at each time step.  
+Similarly to `fixed nodes`, when running `simulate` or `target`, it is 
+possible to use `0?`, `1?`,`any`, `any?` values. For example, the 
+following lines increase the number of produced simulations by a factor 
+of 2<sup>4</sup> = 16 because the state to force `C` into (`0` or `1`) 
+is considered independently at each time step.  
 
 ```
 perturbations:
@@ -268,7 +305,8 @@ perturbations:
         any: 2, 3, 5, 7
 ```
  
-When running `attract` or `target`, BoolSi starts looking for attractors or target states only after all perturbations have occurred.
+When running `attract` or `target`, BoolSi starts looking for attractors 
+or target states only after all perturbations have occurred.
 
 ## Command line reference
 
@@ -278,7 +316,7 @@ To run BoolSi, open the terminal and type:
 
 To stop, press `Ctrl+C`.
 
-###Commands:
+### Commands:
 
 `simulate` Perform simulations.
 
@@ -353,10 +391,19 @@ node names:
     -SOMEGENE4
 ```
 ### Update rules
-Section `update rules` contains rules that define next state of the network based on its current state. 
-A rule for each individual node is a Boolean function on a subset of the current node states. It is written as an expression that can contain node names, logical operators `and`, `or`, and `not`, parentheses, constants `0` and `1`, and function `majority`.  
+Section `update rules` contains rules that define next state of the 
+network based on its current state. A rule for each individual node is a 
+Boolean function on a subset of the current node states. It is written 
+as an expression that can contain node names, logical operators `and`, 
+`or`, and `not`, parentheses, constants `0` and `1`, and function `majority`.  
 
-`majority` takes <i>n</i> Boolean inputs and returns `1` if and only if more than <i>n</i>/2 of its inputs are `1`. In particular, when <i>n</i> is even and exactly half of the inputs are `0` (and the other half is `1`), `majority` returns `0`. To change this tie-breaking behavior to return `1`, add `1` as an input to the function. Similarly, you could make `majority` return current state of some node `X` in case of a tie by adding `X` as an input instead. 
+`majority` takes <i>n</i> Boolean inputs and returns `1` if and only if 
+more than <i>n</i>/2 of its inputs are `1`. In particular, when <i>n</i> 
+is even and exactly half of the inputs are `0` (and the other half is 
+`1`), `majority` returns `0`. To change this tie-breaking behavior to 
+return `1`, add `1` as an input to the function. Similarly, you could 
+make `majority` return current state of some node `X` in case of a tie 
+by adding `X` as an input instead. 
 
 ```
 update rules:
@@ -371,10 +418,16 @@ update rules:
     
 ```
 
-Note: update rule for a node is stored as a truth table, whose size increases exponentially with the number of nodes it depends on. Specifying more than 20 nodes in update rule can put your system at risk of running out of memory.
+Note: update rule for a node is stored as a truth table, whose size 
+increases exponentially with the number of nodes it depends on. 
+Specifying more than 20 nodes in update rule can put your system at risk 
+of running out of memory.
 
 ### Initial state
-Section `initial state` defines initial state or range of initial states to simulate from. State of each node must be specified as either `0`, `1`, or `any`. Specifying `any` will simulate from both node states (`0` and `1`), and thus the number of simulations will double.
+Section `initial state` defines initial state or range of initial states 
+to simulate from. State of each node must be specified as either `0`, 
+`1`, or `any`. Specifying `any` will simulate from both node states (`0` 
+and `1`), and thus the number of simulations will double.
 
 In the following example, the network will be simulated from both `A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`:
 ```
@@ -384,8 +437,13 @@ initial state:
     C: any
 ```
 ### Fixed nodes
-Section `fixed nodes` allows to define nodes whose state doesn't change throughout a simulation. 
-Setting node to a fixed state `0` or `1` simply overrides its update rule with a constant, while `any` sets it to both `0` and `1` in separate simulations. Their counterparts with `?` (`0?`, `1?`, or `any?`) will simulate with both regular and overridden update rule of a node. Thus, specifying `any`, `0?`, or `1?` for a node doubles the number of simulations, while `any?` &mdash; triples it. 
+Section `fixed nodes` allows to define nodes whose state doesn't change 
+throughout a simulation. Setting node to a fixed state `0` or `1` simply 
+overrides its update rule with a constant, while `any` sets it to both 
+`0` and `1` in separate simulations. Their counterparts with `?` (`0?`, 
+`1?`, or `any?`) will simulate with both regular and overridden update 
+rule of a node. Thus, specifying `any`, `0?`, or `1?` for a node doubles 
+the number of simulations, while `any?` &mdash; triples it. 
 
 ```
 fixed nodes:
@@ -398,7 +456,10 @@ fixed nodes:
 ```
 
 ### Perturbations
-Section `perturbations` allows to override node states at specific time steps. Similarly to [Fixed nodes](#fixed-nodes), the states to override with are defined by `0`, `1`, `any`, `0?`, `1?`, or `any?` but you also need to specify time steps when the override takes place.
+Section `perturbations` allows to override node states at specific time 
+steps. Similarly to [Fixed nodes](#fixed-nodes), the states to override 
+with are defined by `0`, `1`, `any`, `0?`, `1?`, or `any?` but you also 
+need to specify time steps when the override takes place.
 
 ```
 perturbations:
@@ -413,17 +474,25 @@ perturbations:
     D:
         any?: 123
 ``` 
-Time steps may be given individually (e.g. `5, 6, 7, 8`) or in ranges (e.g. `5-8`). They must be 1 or greater (0 corresponds to initial state) and can't exceed maximum simulation time (if specified).
+Time steps may be given individually (e.g. `5, 6, 7, 8`) or in ranges 
+(e.g. `5-8`). They must be 1 or greater (0 corresponds to initial state) 
+and can't exceed maximum simulation time (if specified).
 
-If a perturbation occurs with a node in fixed state, this state will be overridden at the time steps of the perturbation.
+If a perturbation occurs with a node in fixed state, this state will be 
+overridden at the time steps of the perturbation.
 
-Note that the search for attractors and target states starts only after the last perturbation has occurred.
+Note that the search for attractors and target states starts only after 
+the last perturbation has occurred.
 
 ### Target state
 
-Section `target state` is only applicable when executing `target` command. It defines target state or range of target states to look for in simulations.
+Section `target state` is only applicable when executing `target` 
+command. It defines target state or range of target states to look for 
+in simulations.
 
-Syntax is identical to that of `initial state` &mdash; state of each node must be specified as either `0`, `1`, or `any`, where `any` means that both `0` and `1` are acceptable in a target state.
+Syntax is identical to that of `initial state` &mdash; state of each 
+node must be specified as either `0`, `1`, or `any`, where `any` means 
+that both `0` and `1` are acceptable in a target state.
 
 ```
 target state:
@@ -432,22 +501,25 @@ target state:
     C: any
 ```
 
-In the above example, the BoolSi will be looking for simulations that reach either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
+In the above example, the BoolSi will be looking for simulations that 
+reach either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
 
 ## Output
 ### Graphical
-BoolSi supports a number of graphical output formats: PDF, SVG, PNG, and TIFF. 
-Each simulation or attractor is printed as a separate page of the PDF document and/or an SVG/PNG/TIFF image file. 
+BoolSi supports a number of graphical output formats: PDF, SVG, PNG, and 
+TIFF. Each simulation or attractor is printed as a separate page of the 
+PDF document and/or an SVG/PNG/TIFF image file. 
 
-Below is an example output of a network (namely, Cambium regulation gene network) simulated from an individual 
-initial state for 10 time steps. 
+Below is an example output of a network (namely, Cambium regulation 
+network) simulated from an individual initial state for 10 time steps. 
 Note that initial state (at time step 0) is not counted towards the simulation length.
 
 <img src="./examples/output7_cambium1/simulations_SVG/simulation_1.svg"/>
 
 Here is an example output of an attractor of the same network. 
-Unlike in simulations, time steps in attractors are relative. Note that first state of an attractor in the output 
-is not guaranteed to be the same as the first state of attractor's first occurrence in the simulation. 
+Unlike in simulations, time steps in attractors are relative. Note that 
+first state of an attractor in the output is not guaranteed to be the 
+same as the first state of attractor's first occurrence in the simulation. 
 
 <img src="./examples/output8_cambium2/attractors_SVG/attractor_15.svg"/>
 
@@ -456,12 +528,12 @@ is not guaranteed to be the same as the first state of attractor's first occurre
 <img src="./examples/output8_cambium2/node_correlations.svg"/>
 
 ### CSV
-By default, BoolSi additionally writes the output to CSV to allow machine processing. 
-The output consists of two CSV files: one containing simulation/attractor summaries, and another &mdash; 
-simulations or attractors themselves. 
+By default, BoolSi additionally writes the output to CSV to allow for 
+machine processing. The output consists of two CSV files: one containing 
+simulation/attractor summaries, and another &mdash; simulations or attractors themselves. 
 
-A summary of a simulation contains its length, flags representing whether individual nodes were fixed, and 
-the number of perturbations for each node:
+A summary of a simulation contains its length, flags representing 
+whether individual nodes were fixed, and the number of perturbations for each node:
 
 <!-- ./examples/output7_cambium1/simulation_summaries.csv -->
 ```
@@ -469,7 +541,9 @@ simulation_id,length,CK0_is_fixed,CK_is_fixed,AHK_is_fixed,AHP_is_fixed,BARR_is_
 simulation_1,10,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0
 ```
 
-A summary of an attractor contains its length, mean and standard deviation of its trajectory length, and relative frequency of attractor occurrences across all performed simulations:
+A summary of an attractor contains its length, mean and standard 
+deviation of its trajectory length, and relative frequency of attractor 
+occurrences across all performed simulations:
 
 <!-- ./examples/output8_cambium2/attractor_summaries.csv -->
 ```
@@ -480,7 +554,9 @@ attractor_15,13,7.575435556,2.5215366582580407,0.031365394592285156
 ...
 ```
 
-In the file with simulations or attractors, `_` after a node state means that the state of the node is fixed. `*` after a node state means that the node was perturbed into this state at the corresponding time step. 
+In a file storing simulations or attractors, `_` after a node state means 
+that the state of the node is fixed. `*` after a node state means that 
+the node was perturbed into this state at the corresponding time step. 
 
 Simulation example:
 <!-- ./examples/output7_cambium1/simulations.csv -->
@@ -521,7 +597,10 @@ attractor_15,t+12,0,0,0,0,0,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,1,0
 ...
 ```
 
-In `attract`, Spearman's correlations between node states in attractors are written to an additional CSV file. The correlations are sorted by their magnitude in descending order, with statistically significant correlations printed first:
+In `attract`, Spearman's correlations between node states in attractors 
+are written to an additional CSV file. The correlations are sorted by 
+their magnitude in descending order, with statistically significant 
+correlations printed first:
 
 ```
 node 1,node 2,rho,p-value
