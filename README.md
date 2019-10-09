@@ -22,7 +22,7 @@ at any time step (e.g. modeling sensory input in robotics).
 - [Quickstart](#quickstart)
     - [Example 1. Simulate network from `example1.yaml` for 5 steps](#example-1-simulate-network-from-example1yaml-for-5-steps)
     - [Example 2. Find and analyze attractors of a network](#example-2-find-and-analyze-attractors-of-a-network)
-    - [Example 3. Find simulations that reach target states of a network](#example-3-find-simulations-that-reach-target-states-of-a-network)
+    - [Example 3. Find simulations that reach specific states of a network](#example-3-find-simulations-that-reach-specific-states-of-a-network)
 - [Advanced usage](#advanced-usage)
     - [Fixed nodes](#fixed-nodes)
     - [Perturbations](#perturbations)
@@ -293,8 +293,8 @@ perturbations:
 
 <img src="./examples/output6_example1_perturbations/simulations.pdf.svg"/>
 
-Similarly to `fixed nodes`, when running `simulate` or `target`, it is 
-possible to use `0?`, `1?`,`any`, `any?` values. For example, the 
+Similarly to `fixed nodes`, it is possible to use `0?`, `1?`,`any`, 
+`any?` values when running `simulate` or `target`. For example, the 
 following lines increase the number of produced simulations by a factor 
 of 2<sup>4</sup> = 16 because the state to force `C` into (`0` or `1`) 
 is considered independently at each time step.  
