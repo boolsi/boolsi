@@ -4,7 +4,7 @@ Boolean Network Simulation Tool
 from setuptools import find_packages, setup
 
 dependencies = [
-    'click', 'numpy', 'scipy', 'pyyaml', 'matplotlib>=3.0.3', 'seaborn', 'pillow', 'ZODB', 'BTrees',
+    'click', 'numpy', 'scipy', 'pyyaml', 'matplotlib', 'seaborn', 'pillow', 'ZODB', 'BTrees',
     'persistent', 'transaction']
 extras = {
     'mpi': ['mpi4py']}
@@ -14,7 +14,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='boolsi',
-    version='0.9.3',
+    version='0.9.4',
     url='https://github.com/boolsi/boolsi',
     license='MIT',
     author='Vladyslav Oles, Anton Kukushkin',
