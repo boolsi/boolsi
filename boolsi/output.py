@@ -121,7 +121,7 @@ na_correlation_caption = "n/a"
 # Caption for nonsignificant node correlations.
 nonsignificant_correlation_caption = "n/s"
 # Decimal places of correlations to plot in PDF and PNG.
-plotting_float_precision = 2
+plotting_float_precision = 3
 # Decimal places of correlations to print in CSV.
 csv_float_precision = 5
 
@@ -915,39 +915,35 @@ def output_node_correlations(Rho,
             annotation_text = '\n'.join(
                 [node_correlations_id_text, significance_text, correlation_method_text])
 
-            # Limit the number of significant decimal places in
-            # correlations.
-            Rho_for_plotting = np.round(Rho, plotting_float_precision)
-            # Get rid of negative zeros that appear after rounding.
-            Rho_for_plotting += 0.
+            Rho_for_plotting = Rho.copy()
             # Assign to nonsignificant and absent correlations the
             # values outside [-1, 1] for special colors.
             Rho_for_plotting[triu_nonsignificant_mask] = 666
             Rho_for_plotting[na_mask] = -666
-            # Assign NaN to values on main diagonal for special color
-            # to use it as visual boundary.
+            # Hide values on main diagonal to use it as visual boundary.
             np.fill_diagonal(Rho_for_plotting, np.nan)
             # Determine if there are nonsignificant and absent
             # correlations.
             nonsignificant_present = nonsignificant_mask.any()
             na_present = na_mask.any()
             # Maximum correlation value length is the length of
-            # "-0.X", where the length of X is precision.
+            # "-.X", where the length of X is precision.
             max_caption_text_length = max(
                 len(na_correlation_caption), len(nonsignificant_correlation_caption),
-                plotting_float_precision + 3)
+                plotting_float_precision + 2)
             # Fill captions for correlation cells.
             captions = np.empty_like(Rho, dtype=np.dtype('U{}'.format(max_caption_text_length)))
-            captions[rho_caption_mask] = \
-                np.vectorize(lambda rho: "{0:.{1}g}".format(rho, plotting_float_precision))(
-                    Rho_for_plotting[rho_caption_mask])
+            format_rho = lambda rho: "{0:.{1}f}".format(rho, plotting_float_precision).replace(
+                '.' + '0' * plotting_float_precision, '').replace('0.', '.')
+            captions[rho_caption_mask] = np.vectorize(format_rho)(
+                Rho_for_plotting[rho_caption_mask])
             captions[triu_nonsignificant_mask] = nonsignificant_correlation_caption
             captions[np.triu(na_mask)] = na_correlation_caption
             # Flip vertically the order of nodes for graphic output.
             Rho_for_plotting = np.flipud(Rho_for_plotting)
             captions = np.flipud(captions)
             flipped_node_names = node_names[::-1]
-            flipped_significant_mask = np.flipud(significant_mask)
+            flipped_rho_caption_mask = np.flipud(rho_caption_mask)
             # Calculate cell dimensions (in inches) so that each cell has
             # sufficient space for its caption.
             max_caption_width = max(get_text_width(fig, renderer, caption) for
@@ -969,16 +965,16 @@ def output_node_correlations(Rho,
             plot_cmap.set_over(nonsignificant_rho_color)
             plot_cmap.set_under(na_rho_color)
 
-            # Plot significant correlations in regular fontweight.
+            # Plot correlations in regular fontweight.
             sns.heatmap(
                 Rho_for_plotting, xticklabels=node_names, yticklabels=flipped_node_names,
-                cmap=plot_cmap, cbar=False, mask=~flipped_significant_mask, annot=captions,
+                cmap=plot_cmap, cbar=False, mask=~flipped_rho_caption_mask, annot=captions,
                 fmt='', vmin=-1, vmax=1)
-            # Plot nonsignificant and absent correlations in thin
-            # fontweight.
+            # Plot labels for nonsignificant and absent correlations in
+            # thin fontweight.
             plot = sns.heatmap(
                 Rho_for_plotting, xticklabels=node_names, yticklabels=flipped_node_names,
-                cmap=plot_cmap, cbar=False, mask=flipped_significant_mask, annot=captions,
+                cmap=plot_cmap, cbar=False, mask=flipped_rho_caption_mask, annot=captions,
                 annot_kws={'weight': 'light', 'alpha': 0.9}, fmt='', vmin=-1, vmax=1)
             plt.xticks(rotation=90)
             plt.yticks(rotation=0)
@@ -1009,8 +1005,8 @@ def output_node_correlations(Rho,
                     na_artist = Patch(label="not available from\nfound attractors", color=na_rho_color)
                     artist_list.append(na_artist)
                 if nonsignificant_present:
-                    nonsignificant_artist = \
-                        Patch(label="not significant\n(p-value ≥ {})".format(p_value), color=nonsignificant_rho_color)
+                    nonsignificant_artist = Patch(label="not significant\n(p-value ≥ {})".format(p_value),
+                                                  color=nonsignificant_rho_color)
                     artist_list.append(nonsignificant_artist)
                 # Calculate y-coordinate of legend bottom (in axes coordinates).
                 legend_bottom_y = \
