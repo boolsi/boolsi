@@ -1,7 +1,7 @@
 # BoolSi
 
 BoolSi is an open-source command line tool for distributed simulations 
-of deterministic Boolean networks with synchronous update. It uses MPI 
+and analysis of synchronous Boolean networks. It uses MPI 
 standard to allow execution on computational clusters, as well as 
 parallel processing on a single computer.
 
@@ -26,7 +26,6 @@ at any time step (e.g. modeling sensory input in robotics).
 - [Advanced usage](#advanced-usage)
     - [Fixed nodes](#fixed-nodes)
     - [Perturbations](#perturbations)
-    - [Target state](#target-state)
 - [Command line reference](#command-line-reference)
 - [Input file reference](#input-file-reference)
 - [Output](#output)
@@ -187,7 +186,7 @@ Running the command:
 
 will find all attractors and calculate correlations between the node states therein.
 
-<img src="./examples/output3_example2/attractors.pdf.svg"/> <img src="./examples/output3_example2/node_correlations.pdf.svg"/>
+<img src="./examples/output3_example2/attractors.pdf.svg"/> <img src="./examples/output3_example2/node_correlations.pdf.svg" align="top"/>
 
 ### Example 3. Find simulations that reach specific states of a network
 
@@ -413,7 +412,7 @@ update rules:
     D: majority(A, B)                       # Returns 0 when A and B are tied.
     E: majority(A, B, 1)                    # Returns 1 when A and B are tied.
     F: majority(A, B, B)                    # Returns B when A and B are tied.
-    G: majority(A, B, C or D)               # Returns C or D when A and B are tied.
+    G: majority(A, B, C or D)               # Returns (C or D) when A and B are tied.
     H: A and majority(C, not B, not D, G)
     
 ```
@@ -443,7 +442,7 @@ overrides its update rule with a constant, while `any` sets it to both
 `0` and `1` in separate simulations. Their counterparts with `?` (`0?`, 
 `1?`, or `any?`) will simulate with both regular and overridden update 
 rule of a node. Thus, specifying `any`, `0?`, or `1?` for a node doubles 
-the number of simulations, while `any?` &mdash; triples it. 
+the number of simulations, while `any?` triples it. 
 
 ```
 fixed nodes:
@@ -487,10 +486,10 @@ the last perturbation has occurred.
 ### Target state
 
 Section `target state` is only applicable when executing `target` 
-command. It defines target state or range of target states to look for 
+command. It defines the target state or range of target states to look for 
 in simulations.
 
-Syntax is identical to that of `initial state` &mdash; state of each 
+Syntax is identical to that of `initial state` &mdash; the state of each 
 node must be specified as either `0`, `1`, or `any`, where `any` means 
 that both `0` and `1` are acceptable in a target state.
 
@@ -530,9 +529,9 @@ same as the first state of attractor's first occurrence in the simulation.
 ### CSV
 By default, BoolSi additionally writes the output to CSV to allow for 
 machine processing. The output consists of two CSV files: one containing 
-simulation/attractor summaries, and another &mdash; simulations or attractors themselves. 
+simulation/attractor summaries, and another &mdash; the simulations or attractors themselves. 
 
-A summary of a simulation contains its length, flags representing 
+The summary of a simulation contains its length, flags representing 
 whether individual nodes were fixed, and the number of perturbations for each node:
 
 <!-- ./examples/output7_cambium1/simulation_summaries.csv -->
@@ -541,7 +540,7 @@ simulation_id,length,CK0_is_fixed,CK_is_fixed,AHK_is_fixed,AHP_is_fixed,BARR_is_
 simulation_1,10,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0
 ```
 
-A summary of an attractor contains its length, mean and standard 
+The summary of an attractor contains its length, mean and standard 
 deviation of its trajectory length, and relative frequency of attractor 
 occurrences across all performed simulations:
 
