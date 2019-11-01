@@ -150,7 +150,7 @@ for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 The above also tells you where to look for the simulations after the run 
 is finished (`/output_20190403T003836/`):
 
-<img src="./examples/output2_example1/simulations.pdf.svg"/>
+<img src="./examples/output2_example1/simulation_1.pdf.svg"/> <img src="./examples/output2_example1/simulation_2.pdf.svg"/>
 
 By default the results are printed in PDF, but other formats are 
 available, including machine-readable CSV (see [Output reference](#output-reference)). 
@@ -186,7 +186,7 @@ Running the command:
 
 will find all attractors and calculate correlations between the node states therein.
 
-<img src="./examples/output3_example2/attractors.pdf.svg"/> <img src="./examples/output3_example2/node_correlations.pdf.svg" align="top"/>
+<img src="./examples/output3_example2/attractor_1.pdf.svg"/> <img src="./examples/output3_example2/attractor_2.pdf.svg" align="top"/> <img src="./examples/output3_example2/node_correlations.pdf.svg" align="top"/>
 
 ### Example 3. Find simulations that reach specific states of a network
 
@@ -224,7 +224,7 @@ Running the command:
 
 will find the simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
 
-<img src="./examples/output4_example3/simulations.pdf.svg"/>
+<img src="./examples/output4_example3/simulation_1.pdf.svg"/>
 
 ## Advanced usage
 
@@ -248,7 +248,7 @@ fixed nodes:
 
 Adding the above to `example1.yaml` will make the simulations look like:
 
-<img src="./examples/output5_example1_fixed_nodes/simulations.pdf.svg"/>
+<img src="./examples/output5_example1_fixed_nodes/simulation_1.pdf.svg"/> <img src="./examples/output5_example1_fixed_nodes/simulation_2.pdf.svg"/>
 
 When running `simulate` or `target`, it is also possible to use `0?`, `1?`, `any`, `any?` values.
 
@@ -290,7 +290,7 @@ perturbations:
         1: 1-3, 5
 ```
 
-<img src="./examples/output6_example1_perturbations/simulations.pdf.svg"/>
+<img src="./examples/output6_example1_perturbations/simulation_1.pdf.svg"/> <img src="./examples/output6_example1_perturbations/simulation_2.pdf.svg"/>
 
 Similarly to `fixed nodes`, it is possible to use `0?`, `1?`,`any`, 
 `any?` values when running `simulate` or `target`. For example, the 
