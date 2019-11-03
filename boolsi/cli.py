@@ -36,13 +36,14 @@ _common_opts = [
     click.argument('input_file', type=click.Path(exists=True)),
     click.option('-o', '--output-directory', type=click.Path(file_okay=False, dir_okay=True, exists=False),
                  default='output_' + timestamp,
-                 help='Path to directory to print output into. '
-                      'Defaults to "<current directory>/output_<timestamp>".'),
+                 help='Directory to print output to. Defaults to "<current directory>/output_<timestamp>".'),
     click.option('-b', '--batches-per-process', type=click.IntRange(min=1, max=2**31), default=100,
-                 help='Number of batches to split each each process will handle. Defaults to 100.'),
+                 help='Number of batches to split the expected simulations of one process into. '
+                      'Defaults to 100. Increasing it reduces memory usage and makes the '
+                      'distribution of the simulations more even, but decreases the performance.'),
     click.option('-d', '--tmp-database-directory', 'db_dir', type=click.Path(file_okay=False, dir_okay=True),
                  default='tmp_db',
-                 help='Directory to store intermediate results in. Defaults to "<current directory>/.tmp_storage".'),
+                 help='Directory to store intermediate results in. Defaults to "<current directory>/tmp_db".'),
     click.option('--no-pdf', is_flag=True,
                  help='Disable PDF output. PDF output is enabled by default.'),
     click.option('--pdf-page-limit', type=click.IntRange(min=1), default=500,
@@ -184,7 +185,7 @@ def terminate(output_directory, db_dir, db_conn, mpi_comm, terminating_early, te
 @add_opts
 @init
 @click.option('-t', '--simulation-time', type=click.IntRange(min=1), required=True,
-              help='(Mandatory) number of time steps to simulate for.')
+              help='(required) Number of time steps to simulate for.')
 def simulate(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_directory, batches_per_process,
              db_dir, no_pdf, pdf_page_limit, no_csv, print_png, png_dpi,
              print_tiff, tiff_dpi, print_svg, simulation_time):
@@ -218,8 +219,7 @@ def simulate(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_direc
               help='Maximum simulation time. '
                    'If set, simulation stops after this time step even if attractor was not found.')
 @click.option('-a', '--max-attractor-length', type=click.IntRange(min=1),
-              help='Maximum length of attractor to look for. '
-                   'If set, attractors longer than this value will be ignored.')
+              help='Maximum length of attractor to look for. If set, attractors longer than this value are discarded.')
 @click.option('-r', '--reduce-memory-usage', 'reduce_memory_usage', is_flag=True,
               help='Turn off storing all simulation states. '
                    'Slows down the search for attractors.')
@@ -292,8 +292,8 @@ def attract(mpi_comm, db_conn, image_formats_and_dpis, input_file, output_direct
 @add_opts
 @init
 @click.option('-t', '--max-simulation-time', type=click.IntRange(min=1), required=False,
-              help='Maximum simulation time. '
-                   'If set, simulation stops after this time step even if target state wasn\'t reached.')
+              help='Maximum simulation time. If set, simulation stops after this time step even '
+                   'if a target state was not reached.')
 @click.option('-n', '--n-simulations-reaching-target', 'n_simulations_reaching_target',
               type=click.IntRange(min=1), required=False,
               help='Stop after this many simulations have reached target state.')
