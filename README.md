@@ -140,16 +140,16 @@ using keyword `any` for node `C`), BoolSi will run separate simulation
 for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 
 ```
-18-Aug-2019 20:17:16 Hi! All BoolSi output (including this log) will appear in "/Users/user/PycharmProjects/boolsi/examples/output2_example1/".
-18-Aug-2019 20:17:16 Run parameters: "simulate examples/example1.yaml -t 5 -o examples/output2_example1".
-18-Aug-2019 20:17:16 Initializing temporary storage in "/Users/user/PycharmProjects/boolsi/.tmp_storage/".
+18-Aug-2019 20:17:16 Hi! All BoolSi output (including this log) will appear in "/Users/user/boolsi/output_20190818T201716.666/".
+18-Aug-2019 20:17:16 Run parameters: "simulate examples/example1.yaml -t 5".
+18-Aug-2019 20:17:16 Initializing temporary storage in "/Users/user/boolsi/tmp_db/".
 18-Aug-2019 20:17:16 Read Boolean network of 3 nodes.
 18-Aug-2019 20:17:16 Single process will be used to perform 2 simulations...
 ...
 ```
 
 The above also tells you where to look for the simulations after the run 
-is finished (`/output_20190403T003836/`):
+is finished (`/output_20190818T201716.666/`):
 
 <img src="./examples/output2_example1/simulation_1.pdf.svg"/> <img src="./examples/output2_example1/simulation_2.pdf.svg"/>
 
