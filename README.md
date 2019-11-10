@@ -37,6 +37,7 @@ at any time step (e.g. modeling sensory input in robotics).
     - [Batching](#batching)
 - [FAQ](#faq)
 -->
+- [Questions and feedback](#questions-and-feedback)
 - [License](#license)
 
 ## Installation
@@ -616,6 +617,11 @@ IPT,AHP6,-1.00000,0.00000
 ...
 ```
 
+## Questions and feedback
+
+If you have any questions or wish to provide feedback feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue) or send an email to vlad.oles (at) protonmail.com.
+
 ## License
 
 BoolSi is licensed with the MIT license.
+
