@@ -111,9 +111,9 @@ Boolean network to simulate needs to be described in YAML file of a form:
 
 ```
 nodes:
-- A
-- B
-- C
+    - A
+    - B
+    - C
 
 update rules:
     A: not B
@@ -167,9 +167,9 @@ to `any`:
 
 ```
 nodes:
-- A
-- B
-- C
+    - A
+    - B
+    - C
 
 update rules:
     A: not B
@@ -200,9 +200,9 @@ omit the trivial results, when the network starts in a target state.
  
 ```
 nodes:
-- A
-- B
-- C
+    - A
+    - B
+    - C
 
 update rules:
     A: not B
@@ -389,9 +389,11 @@ Section `node names` of input file contains YAML list of node names. Node names 
 Node name format is compatible with Python's MathText, allowing for basic TeX-style expressions.
 ```
 node names:
-    -composite_node_name
-    -$X_5$
-    -SOMEGENE4
+    - A
+    - B
+    - composite_node_name
+    - $X_5$
+    - SOMEGENE4
 ```
 ### Update rules \[required\]
 Section `update rules` contains rules that define the next state of the 
