@@ -95,8 +95,8 @@ BoolSi provides 3 terminal commands to simulate boolean networks:
 - `attract` to find attractors (and analyze them for node correlations)
 - `target` to find conditions leading to specific states of the network
 
-Each command allows to run simulations from multiple initial states, 
-with a time cap, and overriding the update rules (see [Advanced usage](#advanced-usage) 
+Each command supports running simulations from multiple initial states at once, 
+limiting the simulation time, and overriding the simulation process (see [Advanced usage](#advanced-usage) 
 for the latter). All flags and arguments for the commands are covered 
 in [Command line reference](#command-line-reference). 
 
@@ -230,7 +230,7 @@ will find the simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 
 
 ## Advanced usage
 
-BoolSi allows to override the simulation process, which can be used to model 
+BoolSi allows overriding the simulation process, which can be used to model 
 external influence on the network. User can fix the state of any node 
 for the entire simulation (e.g. modeling gene knockout in regulatory 
 networks), or perturb it at any individual time step (e.g. modeling sensory input 
@@ -327,7 +327,7 @@ You can stop BoolSi at any point by pressing `Ctrl+C`.
 
 ### Common arguments:
 
-`input_file` (Mandatory) path to YAML file that contains Boolean network description. 
+`input_file` **\[required\]** Path to YAML file describing the Boolean network. 
 
 ### Common options
 
@@ -357,7 +357,7 @@ You can stop BoolSi at any point by pressing `Ctrl+C`.
 
 ### `simulate` options
 
-`-t`, `--simulation-time` (required) Number of time steps to simulate for.
+`-t`, `--simulation-time` **\[required\]** Number of time steps to simulate for.
               
 ### `attract` options
 
@@ -383,7 +383,7 @@ You can stop BoolSi at any point by pressing `Ctrl+C`.
 
 ## Input file reference
 Input file uses YAML syntax to describe a Boolean network and how its state changes over time.
-### Node names
+### Node names \[required\]
 Section `node names` of input file contains YAML list of node names. Node names must be unique valid YAML strings and contain no whitespaces, parentheses, or commas. In addition, a node name cannot be any of the reserved words `0`, `1`, `and`, `or`, `not`, `majority`.
 
 Node name format is compatible with Python's MathText, allowing for basic TeX-style expressions.
@@ -393,7 +393,7 @@ node names:
     -$X_5$
     -SOMEGENE4
 ```
-### Update rules
+### Update rules \[required\]
 Section `update rules` contains rules that define the next state of the 
 network based on its current state. A rule for each individual node is a 
 Boolean function on a subset of the current node states. It is written 
@@ -426,7 +426,7 @@ increases exponentially with the number of the nodes it depends on (its inputs).
 Specifying more than 20 nodes in an update rule can put your system at risk 
 of running out of memory.
 
-### Initial state
+### Initial state \[required\]
 Section `initial state` defines the initial state (or the range of initial states) of the network 
 to simulate from. The initial state of each node must be specified as either `0`, 
 `1`, or `any`. Specifying `any` will simulate from both possible states of the node (`0` 
@@ -440,7 +440,7 @@ initial state:
     C: any
 ```
 ### Fixed nodes
-Section `fixed nodes` allows to define the nodes whose state doesn't change 
+Section `fixed nodes` allows user to define the nodes whose state doesn't change 
 throughout a simulation. Setting a node to a fixed state `0` or `1` simply 
 overrides its update rule with a constant, while `any` sets it to both 
 `0` and `1` in separate simulations. Their counterparts with `?` (`0?`, 
@@ -459,7 +459,7 @@ fixed nodes:
 ```
 
 ### Perturbations
-Section `perturbations` allows to override node states at individual time 
+Section `perturbations` allows user to override node states at individual time 
 steps. Similarly to [Fixed nodes](#fixed-nodes), the states to override 
 with are defined by `0`, `1`, `any`, `0?`, `1?`, or `any?` but you also 
 need to specify time steps when the override takes place.
