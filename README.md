@@ -621,7 +621,9 @@ IPT,AHP6,-1.00000,0.00000
 
 ## Questions and feedback
 
-If you have any questions or wish to provide feedback feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue) or send an email to vlad.oles (at) protonmail.com.
+[BoolSi mailing list](https://mail.python.org/mailman3/lists/boolsi.python.org/) is the preferred way of getting help with BoolSi. Submit a question by sending an email to boolsi@python.org. See all prior discussions in [the mailing list archive](https://mail.python.org/archives/list/boolsi@python.org/).
+
+If you found a bug or want to suggest an enhancement, feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue).
 
 ## License
 
