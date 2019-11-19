@@ -89,7 +89,7 @@ without the flag `-i` may leave orphaned files in the database directory
 (defaults to "\<current directory\>/tmp_db"). 
 ## Quickstart
 
-BoolSi provides 3 terminal commands to simulate boolean networks:
+BoolSi provides 3 terminal commands to simulate Boolean networks:
 
 - `simulate` to simulate for a number of time steps
 - `attract` to find attractors (and analyze them for node correlations)
@@ -107,7 +107,7 @@ network states) that start from the specified initial states of a network.
 `target` produces simulations, but only those that reach the specified target states of a network.
   
 
-Boolean network to simulate needs to be described in YAML file of a form:
+Boolean network to simulate needs to be described in a YAML file of the form:
 
 ```
 nodes:
@@ -126,7 +126,7 @@ initial state:
     C: any
 ```
 
-For full input file syntax refer to [Input file reference](#input-file-reference).
+[Input file reference](#input-file-reference) provides a detailed description of the input file syntax.
 
 Let's run through some basic examples.
 
