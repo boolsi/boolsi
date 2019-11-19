@@ -7,7 +7,7 @@ parallel processing on a single computer.
 
 <img src="./examples/output1_glider/simulations_SVG/simulation_1.svg"/>
 
-BoolSi can simulate from a range of initial states of the network, 
+BoolSi can simulate a Boolean network from a range of initial states, 
 identify and analyze network attractors, and find conditions that lead 
 to specific states of the network. It also allows user to fix the state 
 of any network node for the length of entire simulation (e.g. modeling 
