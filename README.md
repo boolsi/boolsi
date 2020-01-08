@@ -1,6 +1,6 @@
 # BoolSi
 
-BoolSi is an open-source command line tool for distributed simulations 
+BoolSi is a command line tool for distributed simulations 
 and analysis of synchronous Boolean networks. It uses MPI 
 standard to allow execution on computational clusters, as well as 
 parallel processing on a single computer.
@@ -107,7 +107,7 @@ network states) that start from the specified initial states of a network.
 `target` produces simulations, but only those that reach the specified target states of a network.
   
 
-Boolean network to simulate needs to be described in a YAML file of the form:
+Boolean network to simulate needs to be described in a YAML file of the form (`example1.yaml`):
 
 ```
 nodes:
