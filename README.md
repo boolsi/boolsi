@@ -38,6 +38,7 @@ at any time step (e.g. modeling sensory input in robotics).
 - [FAQ](#faq)
 -->
 - [Questions and feedback](#questions-and-feedback)
+- [Citations](#citations)
 - [License](#license)
 
 ## Installation
@@ -624,6 +625,20 @@ IPT,AHP6,-1.00000,0.00000
 [BoolSi mailing list](https://mail.python.org/mailman3/lists/boolsi.python.org/) is the preferred way of getting help with BoolSi. Submit a question by sending an email to boolsi@python.org. See all prior discussions in [the mailing list archive](https://mail.python.org/archives/list/boolsi@python.org/).
 
 If you found a bug or want to suggest an enhancement, feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue).
+
+## Citations
+
+If you would like to cite BoolSi, please use the following:
+<blockquote>
+<p>Oles, V., & Kukushkin, A. (2019). BoolSi: a tool for distributed simulations and analysis of Boolean networks. <i>arXiv preprint arXiv:1910.03736</i>.</p>
+</blockquote>
+<pre><code>@article{boolsi2019,
+	title={BoolSi: a tool for distributed simulations and analysis of Boolean networks},
+	author={Oles, Vladyslav and Kukushkin, Anton},
+	journal={arXiv preprint arXiv:1910.03736},
+	year={2019}
+}
+</code></pre>
 
 ## License
 
