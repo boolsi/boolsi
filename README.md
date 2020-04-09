@@ -151,7 +151,7 @@ for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 ```
 
 The above also tells you where to look for the simulations after the run 
-is finished (`/output_20190818T201716.666/`):
+is finished (`output_20190818T201716.666/`):
 
 <img src="./examples/output2_example1/simulation_1.pdf.svg"/> <img src="./examples/output2_example1/simulation_2.pdf.svg"/>
 
