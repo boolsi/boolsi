@@ -427,7 +427,7 @@ def output_simulation_results(
                                           time_step_labels, simulation_result_plot_annotation_text)
 
                     if image_formats_and_dpis:
-                        img_filename_base = "{0}_{1:0{2}}".format(
+                        img_filename_base = "{0}{1:0{2}}".format(
                             simulation_result_name, simulation_result_index + 1,
                             max_simulation_result_index_length)
                         for (fmt, dpi), dirpath in zip(image_formats_and_dpis, image_dirpaths):
