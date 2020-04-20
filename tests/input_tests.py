@@ -57,7 +57,7 @@ def test_parse_input_A():
         test_description = generate_test_description(
             locals(), 'fixed_nodes_input_text', 'perturbations_input_text',
             'target_state_input_text', 'unknown_section_input_text')
-        assert expected_config == config
+        assert expected_config == config, test_description
 
 
 def test_parse_raw_input_node_names_A():
@@ -168,8 +168,9 @@ def test_parse_raw_input_node_names_G():
 
         test_description = generate_test_description(
             locals(), 'forbidden_symbol', 'forbidden_symbol_index')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_node_names(raw_input_node_names)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_node_names_H():
@@ -328,8 +329,9 @@ def test_parse_raw_input_initial_state_G():
         raw_input_initial_state = {'A': node_state_1}
 
         test_description = generate_test_description(locals(), 'node_state')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_initial_state(raw_input_initial_state, node_names)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_initial_state_H():
@@ -454,8 +456,9 @@ def test_parse_raw_input_perturbations_B():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_C():
@@ -474,8 +477,9 @@ def test_parse_raw_input_perturbations_C():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_D():
@@ -493,8 +497,9 @@ def test_parse_raw_input_perturbations_D():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_E():
@@ -512,8 +517,9 @@ def test_parse_raw_input_perturbations_E():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_F():
@@ -532,8 +538,9 @@ def test_parse_raw_input_perturbations_F():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_G():
@@ -553,8 +560,9 @@ def test_parse_raw_input_perturbations_G():
 
     for mode, max_t in product([mode_1, mode_2, mode_3], [max_t_1, max_t_2]):
         test_description = generate_test_description(locals(), 'mode', 'max_t')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_H():
@@ -574,8 +582,9 @@ def test_parse_raw_input_perturbations_H():
 
     for mode, max_t in product([mode_1, mode_2, mode_3], [max_t_1, max_t_2]):
         test_description = generate_test_description(locals(), 'mode', 'max_t')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_I():
@@ -593,8 +602,9 @@ def test_parse_raw_input_perturbations_I():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_J():
@@ -628,8 +638,9 @@ def test_parse_raw_input_perturbations_J():
 
                 test_description = generate_test_description(
                     locals(), 'mode', 'max_t', 'node_state', 'another_node_state')
-                with pytest.raises(ValueError, message=test_description):
+                with pytest.raises(ValueError):
                     parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+                    pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_K():
@@ -655,6 +666,7 @@ def test_parse_raw_input_perturbations_K():
         test_description = generate_test_description(locals(), 'max_t', 'node_state')
         with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, Mode.ATTRACT, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_L():
@@ -673,8 +685,9 @@ def test_parse_raw_input_perturbations_L():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_perturbations(raw_input_perturbations, node_names, mode, max_t)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_perturbations_X():
@@ -796,8 +809,9 @@ def test_parse_raw_input_fixed_nodes_B():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_C():
@@ -814,8 +828,9 @@ def test_parse_raw_input_fixed_nodes_C():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_D():
@@ -832,8 +847,9 @@ def test_parse_raw_input_fixed_nodes_D():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_E():
@@ -850,8 +866,9 @@ def test_parse_raw_input_fixed_nodes_E():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_F():
@@ -871,8 +888,9 @@ def test_parse_raw_input_fixed_nodes_F():
         raw_input_fixed_nodes = {'A': node_state}
 
         test_description = generate_test_description(locals(), 'node_state')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, Mode.ATTRACT)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_G():
@@ -889,8 +907,9 @@ def test_parse_raw_input_fixed_nodes_G():
 
     for mode in [mode_1, mode_2, mode_3]:
         test_description = generate_test_description(locals(), 'mode')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_fixed_nodes(raw_input_fixed_nodes, node_names, mode)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_fixed_nodes_X():
@@ -954,8 +973,8 @@ def test_parse_raw_input_target_state_B():
             raw_input_target_state, node_names, mode)
 
         test_description = generate_test_description(locals(), 'mode')
-        assert expected_target_subcode == target_subcode
-        assert expected_target_node_set == target_node_set
+        assert expected_target_subcode == target_subcode, test_description
+        assert expected_target_node_set == target_node_set, test_description
 
 
 def test_parse_raw_input_target_state_C():
@@ -1034,8 +1053,9 @@ def test_parse_raw_input_target_state_H():
         raw_input_target_state = {'A': node_state_1}
 
         test_description = generate_test_description(locals(), 'node_state')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_raw_input_target_state(raw_input_target_state, node_names, Mode.TARGET)
+            pytest.fail(test_description)
 
 
 def test_parse_raw_input_target_state_I():
@@ -1233,8 +1253,9 @@ def test_parse_input_update_rules_C():
         update_rules_dict = {constant_txt: 'A'}
 
         test_description = generate_test_description(locals(), 'constant_txt')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             parse_input_update_rules(update_rules_dict, node_names, {'section': 'update rules'})
+            pytest.fail(test_description)
 
 
 def test_parse_input_update_rules_D():
@@ -1300,6 +1321,7 @@ def test_parse_input_update_rules_G():
             locals(), 'leading_majority_txt', 'trailing_majority_txt')
         with pytest.raises(ValueError):
             parse_input_update_rules(update_rules_dict, node_names, {'section': 'update rules'})
+            pytest.fail(test_description)
 
 
 def test_parse_input_update_rules_H():
@@ -1325,6 +1347,7 @@ def test_parse_input_update_rules_H():
             locals(), 'leading_majority_txt', 'trailing_majority_txt')
         with pytest.raises(ValueError):
             parse_input_update_rules(update_rules_dict, node_names, {'section': 'update rules'})
+            pytest.fail(test_description)
 
 
 def test_parse_input_update_rules_J():
@@ -1350,6 +1373,7 @@ def test_parse_input_update_rules_J():
             locals(), 'leading_majority_txt', 'trailing_majority_txt')
         with pytest.raises(ValueError):
             parse_input_update_rules(update_rules_dict, node_names, {'section': 'update rules'})
+            pytest.fail(test_description)
 
 
 def test_parse_incoming_node_name_set_from_update_rule_A():
@@ -1560,9 +1584,10 @@ def test_build_truth_table_from_safe_update_rule_H():
         safe_update_rule = operator_txt + ' ' + safe_node_names[0]
 
         test_description = generate_test_description(locals(), 'operator_txt')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             build_truth_table_from_safe_update_rule(
                 safe_update_rule, predecessor_nodes, safe_node_names, 'dummy error text')
+            pytest.fail(test_description)
 
 
 def test_build_truth_table_from_safe_update_rule_I():
@@ -1581,9 +1606,10 @@ def test_build_truth_table_from_safe_update_rule_I():
         safe_update_rule = operator_txt
 
         test_description = generate_test_description(locals(), 'operator_txt')
-        with pytest.raises(ValueError, message=test_description):
+        with pytest.raises(ValueError):
             build_truth_table_from_safe_update_rule(
                 safe_update_rule, predecessor_nodes, safe_node_names, 'dummy error text')
+            pytest.fail(test_description)
 
 
 def test_build_truth_table_from_safe_update_rule_J():
