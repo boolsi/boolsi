@@ -1,13 +1,13 @@
 # BoolSi
 
-BoolSi is an open-source command line tool for distributed simulations 
+BoolSi is a command line tool for distributed simulations 
 and analysis of synchronous Boolean networks. It uses MPI 
 standard to allow execution on computational clusters, as well as 
 parallel processing on a single computer.
 
 <img src="./examples/output1_glider/simulations_SVG/simulation_1.svg"/>
 
-BoolSi can simulate from a range of initial states of the network, 
+BoolSi can simulate a Boolean network from a range of initial states, 
 identify and analyze network attractors, and find conditions that lead 
 to specific states of the network. It also allows user to fix the state 
 of any network node for the length of entire simulation (e.g. modeling 
@@ -38,6 +38,7 @@ at any time step (e.g. modeling sensory input in robotics).
 - [FAQ](#faq)
 -->
 - [Questions and feedback](#questions-and-feedback)
+- [Citations](#citations)
 - [License](#license)
 
 ## Installation
@@ -89,7 +90,7 @@ without the flag `-i` may leave orphaned files in the database directory
 (defaults to "\<current directory\>/tmp_db"). 
 ## Quickstart
 
-BoolSi provides 3 terminal commands to simulate boolean networks:
+BoolSi provides 3 terminal commands to simulate Boolean networks:
 
 - `simulate` to simulate for a number of time steps
 - `attract` to find attractors (and analyze them for node correlations)
@@ -107,7 +108,7 @@ network states) that start from the specified initial states of a network.
 `target` produces simulations, but only those that reach the specified target states of a network.
   
 
-Boolean network to simulate needs to be described in YAML file of a form:
+Boolean network to simulate needs to be described in a YAML file of the form (`example1.yaml`):
 
 ```
 nodes:
@@ -126,7 +127,7 @@ initial state:
     C: any
 ```
 
-For full input file syntax refer to [Input file reference](#input-file-reference).
+[Input file reference](#input-file-reference) provides a detailed description of the input file syntax.
 
 Let's run through some basic examples.
 
@@ -150,7 +151,7 @@ for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 ```
 
 The above also tells you where to look for the simulations after the run 
-is finished (`/output_20190818T201716.666/`):
+is finished (`output_20190818T201716.666/`):
 
 <img src="./examples/output2_example1/simulation_1.pdf.svg"/> <img src="./examples/output2_example1/simulation_2.pdf.svg"/>
 
@@ -621,7 +622,23 @@ IPT,AHP6,-1.00000,0.00000
 
 ## Questions and feedback
 
-If you have any questions or wish to provide feedback feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue) or send an email to vlad.oles (at) protonmail.com.
+[BoolSi mailing list](https://mail.python.org/mailman3/lists/boolsi.python.org/) is the preferred way of getting help with BoolSi. Submit a question by sending an email to boolsi@python.org. See all prior discussions in [the mailing list archive](https://mail.python.org/archives/list/boolsi@python.org/).
+
+If you found a bug or want to suggest an enhancement, feel free to create a [GitHub Issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue).
+
+## Citations
+
+If you would like to cite BoolSi, please use the following:
+<blockquote>
+<p>Oles, V., & Kukushkin, A. (2019). BoolSi: a tool for distributed simulations and analysis of Boolean networks. <i>arXiv preprint arXiv:1910.03736</i>.</p>
+</blockquote>
+<pre><code>@article{boolsi2019,
+	title={BoolSi: a tool for distributed simulations and analysis of Boolean networks},
+	author={Oles, Vladyslav and Kukushkin, Anton},
+	journal={arXiv preprint arXiv:1910.03736},
+	year={2019}
+}
+</code></pre>
 
 ## License
 
