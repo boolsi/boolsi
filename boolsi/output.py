@@ -120,10 +120,12 @@ service_color = "#000000"
 na_correlation_caption = "n/a"
 # Caption for nonsignificant node correlations.
 nonsignificant_correlation_caption = "n/s"
-# Decimal places of correlations to plot in PDF and PNG.
-plotting_float_precision = 3
-# Decimal places of correlations to print in CSV.
-csv_float_precision = 5
+# Decimal places of attractor trajectory length mean and standard deviation to plot.
+trajectory_l_precision = 2
+# Decimal places of attractor relative frequency to plot.
+frequency_precision = 5
+# Decimal places of node correlations to plot.
+rho_precision = 3
 
 
 def init_plotting():
@@ -514,7 +516,7 @@ def output_simulations(db_conn, node_names, output_dirpath, is_single_process, t
                 for node in perturbed_nodes:
                     n_perturbations_by_node[node] += 1
 
-            return ['{}_{}'.format(simulation_name, simulation_index + 1),
+            return ['{}{}'.format(simulation_name, simulation_index + 1),
                     len(simulation.states) - 1] + [int(node in simulation.fixed_nodes)
                                                    for node in range(len(node_names))] + \
                    n_perturbations_by_node
@@ -596,16 +598,16 @@ def output_attractors(
             id_text = r'$\mathrm{\bf{' + id + '}}$'
             l_text = 'of length ${}$'.format(len(aggregated_attractor.states))
             if aggregated_attractor.frequency > 1:
-                trajectory_l_std_text = '±{:.1f} (mean±SD)'.format(
+                trajectory_l_std_text = '±{:.{}f} (mean±SD)'.format(
                     np.sqrt(aggregated_attractor.trajectory_l_variation_sum /
-                            (aggregated_attractor.frequency - 1)))
+                            (aggregated_attractor.frequency - 1)), trajectory_l_precision)
             else:
                 trajectory_l_std_text = ''
-            trajectory_l_text = 'reached in {:.1f}{} time steps'.format(
-                aggregated_attractor.trajectory_l_mean, trajectory_l_std_text)
+            trajectory_l_text = 'reached in {:.{}f}{} time steps'.format(
+                aggregated_attractor.trajectory_l_mean, trajectory_l_precision, trajectory_l_std_text)
             relative_frequency_text = \
-                r'from $\bf{' + '{:.2f}'.format(100 * aggregated_attractor.frequency /
-                                                n_simulation_problems) + \
+                r'from $\bf{' + '{:.{}f}'.format(100 * aggregated_attractor.frequency /
+                                                 n_simulation_problems, frequency_precision) + \
                 r'\%}$ initial conditions'
 
             return '\n'.join([id_text, l_text, trajectory_l_text, relative_frequency_text])
@@ -668,9 +670,8 @@ def output_attractors(
             else:
                 trajectory_l_std = np.nan
 
-            return ['{}_{}'.format(aggregated_attractor_name, aggregated_attractor_index + 1),
-                    len(aggregated_attractor.states),
-                    round(aggregated_attractor.trajectory_l_mean, 10),
+            return ['{}{}'.format(aggregated_attractor_name, aggregated_attractor_index + 1),
+                    len(aggregated_attractor.states), aggregated_attractor.trajectory_l_mean,
                     trajectory_l_std, aggregated_attractor.frequency / n_simulation_problems]
 
         csv_summaries_header = \
@@ -895,7 +896,7 @@ def output_node_correlations(Rho,
             csv_file = stack.enter_context(
                 open(path.join(output_dirpath, csv_filename), 'w', newline='', encoding='utf-8'))
             writer = csv.writer(csv_file)
-            writer.writerow(['node 1', 'node 2', 'rho', 'p-value'])
+            writer.writerow(['node_1', 'node_2', 'rho', 'p_value'])
 
         logging.getLogger().info('Printing node correlations to {}...'.format(
             list_texts(output_locations)))
@@ -930,11 +931,11 @@ def output_node_correlations(Rho,
             # "-.X", where the length of X is precision.
             max_caption_text_length = max(
                 len(na_correlation_caption), len(nonsignificant_correlation_caption),
-                plotting_float_precision + 2)
+                rho_precision + 2)
             # Fill captions for correlation cells.
             captions = np.empty_like(Rho, dtype=np.dtype('U{}'.format(max_caption_text_length)))
-            format_rho = lambda rho: "{0:.{1}f}".format(rho, plotting_float_precision).replace(
-                '.' + '0' * plotting_float_precision, '').replace('0.', '.')
+            format_rho = lambda rho: "{0:.{1}f}".format(rho, rho_precision).replace(
+                '.' + '0' * rho_precision, '').replace('0.', '.')
             captions[rho_caption_mask] = np.vectorize(format_rho)(
                 Rho_for_plotting[rho_caption_mask])
             captions[triu_nonsignificant_mask] = nonsignificant_correlation_caption
@@ -1076,12 +1077,7 @@ def output_node_correlations(Rho,
                 for (node1, node2), rho, p_value in \
                         sorted(zip(np.argwhere(triu_mask), Rho[triu_mask], P[triu_mask]),
                                key=sorting_key):
-                    writer.writerow(
-                        [node_names[node1], node_names[node2],
-                         "{0:.{1}f}".format(np.round(rho, csv_float_precision),
-                                            csv_float_precision),
-                         "{0:.{1}f}".format(np.round(p_value, csv_float_precision),
-                                            csv_float_precision)])
+                    writer.writerow([node_names[node1], node_names[node2], rho, p_value])
 
 
 def format_state(state, t, fixed_nodes, perturbations):
