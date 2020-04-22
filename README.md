@@ -153,7 +153,7 @@ for each of them (`A: 0, B: 1, C: 0` and `A: 0, B: 1, C: 1`):
 The above also tells you where to look for the simulations after the run 
 is finished (`output_20190818T201716.666/`):
 
-<img src="./examples/output2_example1/simulation_1.pdf.svg"/> <img src="./examples/output2_example1/simulation_2.pdf.svg"/>
+<img src="./examples/output2_example1/simulation1.pdf.svg"/> <img src="./examples/output2_example1/simulation2.pdf.svg"/>
 
 By default the results are printed in PDF, but other formats are 
 available, including machine-readable CSV (see [Output reference](#output-reference)). 
@@ -189,7 +189,7 @@ Running the command:
 
 will find all attractors and calculate correlations between the node states therein.
 
-<img src="./examples/output3_example2/attractor_1.pdf.svg"/> <img src="./examples/output3_example2/attractor_2.pdf.svg" align="top"/> <img src="./examples/output3_example2/node_correlations.pdf.svg" align="top"/>
+<img src="./examples/output3_example2/attractor1.pdf.svg"/> <img src="./examples/output3_example2/attractor2.pdf.svg" align="top"/> <img src="./examples/output3_example2/node_correlations.pdf.svg" align="top"/>
 
 ### Example 3. Find simulations that reach specific states of a network
 
@@ -227,7 +227,7 @@ Running the command:
 
 will find the simulations reaching either `A: 0, B: 1, C: 0` or `A: 0, B: 1, C: 1`.
 
-<img src="./examples/output4_example3/simulation_1.pdf.svg"/>
+<img src="./examples/output4_example3/simulation1.pdf.svg"/>
 
 ## Advanced usage
 
@@ -251,7 +251,7 @@ fixed nodes:
 
 Adding the above to `example1.yaml` will make the simulations look like:
 
-<img src="./examples/output5_example1_fixed_nodes/simulation_1.pdf.svg"/> <img src="./examples/output5_example1_fixed_nodes/simulation_2.pdf.svg"/>
+<img src="./examples/output5_example1_fixed_nodes/simulation1.pdf.svg"/> <img src="./examples/output5_example1_fixed_nodes/simulation2.pdf.svg"/>
 
 When running `simulate` or `target`, it is also possible to use `0?`, `1?`, `any`, `any?` values.
 
@@ -293,7 +293,7 @@ perturbations:
         1: 1-3, 5
 ```
 
-<img src="./examples/output6_example1_perturbations/simulation_1.pdf.svg"/> <img src="./examples/output6_example1_perturbations/simulation_2.pdf.svg"/>
+<img src="./examples/output6_example1_perturbations/simulation1.pdf.svg"/> <img src="./examples/output6_example1_perturbations/simulation2.pdf.svg"/>
 
 Similarly to `fixed nodes`, it is possible to use `0?`, `1?`,`any`, 
 `any?` values when running `simulate` or `target`. For example, the 
@@ -520,14 +520,14 @@ Below is an example output of a Boolean network (namely, Cambium regulation
 network) simulated from a particular initial state for 10 time steps. 
 Note that the initial state (at time step 0) is not counted towards the simulation length.
 
-<img src="./examples/output7_cambium1/simulations_SVG/simulation_1.svg"/>
+<img src="./examples/output7_cambium1/simulations_SVG/simulation1.svg"/>
 
 Here is an example output of an attractor of the same network. 
 Unlike in simulations, time steps in attractors are relative. Note that 
 the first state of an attractor in the output is not guaranteed to be the 
 same as the first state of attractor's first occurrence in the simulation. 
 
-<img src="./examples/output8_cambium2/attractors_SVG/attractor_15.svg"/>
+<img src="./examples/output8_cambium2/attractors_SVG/attractor15.svg"/>
 
 `attract` also prints pairwise Spearman's correlations between the (averaged) node states across all attractors.
 
@@ -544,7 +544,7 @@ whether individual nodes were fixed, and the number of perturbations for each no
 <!-- ./examples/output7_cambium1/simulation_summaries.csv -->
 ```
 simulation_id,length,CK0_is_fixed,CK_is_fixed,AHK_is_fixed,AHP_is_fixed,BARR_is_fixed,IPT_is_fixed,PIN_is_fixed,CKX_is_fixed,AARR_is_fixed,ERF_is_fixed,AHP6_is_fixed,TDIF_is_fixed,PXY_is_fixed,IAA0_is_fixed,IAA_is_fixed,BR_is_fixed,BZR1_is_fixed,STM_is_fixed,GA_is_fixed,GID1_is_fixed,ETHL_is_fixed,ARF_is_fixed,HB8_is_fixed,TMO5_is_fixed,WOX4_is_fixed,LOG3_is_fixed,DELL_is_fixed,WRKY_is_fixed,LHW_is_fixed,ENDO_is_fixed,n_CK0_perturbations,n_CK_perturbations,n_AHK_perturbations,n_AHP_perturbations,n_BARR_perturbations,n_IPT_perturbations,n_PIN_perturbations,n_CKX_perturbations,n_AARR_perturbations,n_ERF_perturbations,n_AHP6_perturbations,n_TDIF_perturbations,n_PXY_perturbations,n_IAA0_perturbations,n_IAA_perturbations,n_BR_perturbations,n_BZR1_perturbations,n_STM_perturbations,n_GA_perturbations,n_GID1_perturbations,n_ETHL_perturbations,n_ARF_perturbations,n_HB8_perturbations,n_TMO5_perturbations,n_WOX4_perturbations,n_LOG3_perturbations,n_DELL_perturbations,n_WRKY_perturbations,n_LHW_perturbations,n_ENDO_perturbations
-simulation_1,10,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0
+simulation1,10,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0
 ```
 
 The summary of an attractor contains its length, mean and standard 
@@ -554,9 +554,9 @@ occurrences across all performed simulations:
 <!-- ./examples/output8_cambium2/attractor_summaries.csv -->
 ```
 attractor_id,length,trajectory_length_mean,trajectory_length_SD,relative_frequency
-attractor_1,1,11.018409729,2.573900999723755,0.0625
+attractor1,1,11.018409729003906,2.573900999723755,0.0625
 ...
-attractor_15,13,7.575435556,2.5215366582580407,0.031365394592285156
+attractor15,13,7.5754355559609605,2.5215366582580403,0.031365394592285156
 ...
 ```
 
@@ -568,38 +568,38 @@ Simulation example:
 <!-- ./examples/output7_cambium1/simulations.csv -->
 ```
 simulation_id,time_step,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
-simulation_1,0,1,1,1,1,1,1,1,1,1,1,0,0_,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0
-simulation_1,1,1,0,1,1,1,1,1,1,1,1,0,0_,0,1,0,1,1,0,0,0,1,0,0,0,1,0,1,0,0,1
-simulation_1,2,1,0,0,1,1,1,0,0,1,1,0,0_,0,1,0,1,0,0,0,0,1*,0,0,0,1,0,1,1,1,1
-simulation_1,3,1,1,0,0,1,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1*,0,0,0,1,0,1,0,1,1
-simulation_1,4,1,1,1,0,0,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1*,1,0,0,1,0,0,0,1,0
-simulation_1,5,1,1,1,1,0,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1*,1,0,1,1,0,0,0,1,0
-simulation_1,6,1,0,1,1,1,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
-simulation_1,7,1,1,0,1,1,1,1,0,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
-simulation_1,8,1,1,1,0,1,1,1,0,0,1,0,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-simulation_1,9,1,1,1,1,0,1,1,0,0,1,0,0_,0,1,0,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
-simulation_1,10,1,1,1,1,1,1,0,0,0,1,0,0_,0,1,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1
+simulation1,0,1,1,1,1,1,1,1,1,1,1,0,0_,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0
+simulation1,1,1,0,1,1,1,1,1,1,1,1,0,0_,0,1,0,1,1,0,0,0,1,0,0,0,1,0,1,0,0,1
+simulation1,2,1,0,0,1,1,1,0,0,1,1,0,0_,0,1,0,1,0,0,0,0,1*,0,0,0,1,0,1,1,1,1
+simulation1,3,1,1,0,0,1,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1*,0,0,0,1,0,1,0,1,1
+simulation1,4,1,1,1,0,0,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1*,1,0,0,1,0,0,0,1,0
+simulation1,5,1,1,1,1,0,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1*,1,0,1,1,0,0,0,1,0
+simulation1,6,1,0,1,1,1,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
+simulation1,7,1,1,0,1,1,1,1,0,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
+simulation1,8,1,1,1,0,1,1,1,0,0,1,0,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+simulation1,9,1,1,1,1,0,1,1,0,0,1,0,0_,0,1,0,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
+simulation1,10,1,1,1,1,1,1,0,0,0,1,0,0_,0,1,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1
 ```
 
 <!-- ./examples/output8_cambium2/attractors.csv -->
 Attractor example:
 ```
 attractor_id,time_step,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
-attractor_1,t,0,0,0,0,0,0,0,1,0,0,1,0_,0,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+attractor1,t,0,0,0,0,0,0,0,1,0,0,1,0_,0,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
 ...
-attractor_15,t,0,1,0,0,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0
-attractor_15,t+1,0,0,1,0,0,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+2,0,0,0,1,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
-attractor_15,t+3,0,0,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+4,0,0,0,0,0,1,1,0,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+5,0,1,0,0,0,0,0,0,0,1,1,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+6,0,0,1,0,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
-attractor_15,t+7,0,0,0,1,0,1,0,0,0,1,0,0_,0,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,1,0
-attractor_15,t+8,0,1,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0
-attractor_15,t+9,0,0,1,0,0,1,1,1,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+10,0,0,0,1,0,0,0,0,0,1,1,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
-attractor_15,t+11,0,0,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
-attractor_15,t+12,0,0,0,0,0,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,1,0
+attractor15,t,0,1,0,0,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0
+attractor15,t+1,0,0,1,0,0,0,0,0,0,0,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+2,0,0,0,1,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,0,1,0,1,1,0
+attractor15,t+3,0,0,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+4,0,0,0,0,0,1,1,0,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+5,0,1,0,0,0,0,0,0,0,1,1,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+6,0,0,1,0,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
+attractor15,t+7,0,0,0,1,0,1,0,0,0,1,0,0_,0,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,1,0
+attractor15,t+8,0,1,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0
+attractor15,t+9,0,0,1,0,0,1,1,1,0,1,0,0_,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+10,0,0,0,1,0,0,0,0,0,1,1,0_,0,1,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0
+attractor15,t+11,0,0,0,0,1,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1
+attractor15,t+12,0,0,0,0,0,1,0,0,1,1,0,0_,0,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,1,0
 ...
 ```
 
@@ -609,14 +609,14 @@ their magnitude in descending order, with statistically significant
 correlations printed first:
 
 ```
-node 1,node 2,rho,p-value
-CK,AHK,1.00000,0.00000
-CK,AHP,1.00000,0.00000
-CK,BARR,1.00000,0.00000
-AHK,AHP,1.00000,0.00000
-AHK,BARR,1.00000,0.00000
-AHP,BARR,1.00000,0.00000
-IPT,AHP6,-1.00000,0.00000
+node_1,node_2,rho,p-value
+CK,AHK,1.0,0.0
+CK,AHP,1.0,0.0
+CK,BARR,1.0,0.0
+AHK,AHP,1.0,0.0
+AHK,BARR,1.0,0.0
+AHP,BARR,1.0,0.0
+IPT,AHP6,-1.0,0.0
 ...
 ```
 

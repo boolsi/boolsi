@@ -1,5 +1,5 @@
 attractor_id,time_step,A,B,C
-attractor_1,t,1,1,0
-attractor_1,t+1,0,0,1
-attractor_1,t+2,1,0,1
-attractor_2,t,1,0,0
+attractor1,t,1,1,0
+attractor1,t+1,0,0,1
+attractor1,t+2,1,0,1
+attractor2,t,1,0,0
