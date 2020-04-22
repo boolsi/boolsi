@@ -5,7 +5,7 @@ and analysis of synchronous Boolean networks. It uses MPI
 standard to allow execution on computational clusters, as well as 
 parallel processing on a single computer.
 
-<img src="./examples/output1_glider/simulations_SVG/simulation_1.svg"/>
+<img src="./examples/output1_glider/simulations_SVG/simulation1.svg"/>
 
 BoolSi can simulate a Boolean network from a range of initial states, 
 identify and analyze network attractors, and find conditions that lead 
