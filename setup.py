@@ -4,7 +4,7 @@ Boolean Network Simulation Tool
 from setuptools import find_packages, setup
 
 dependencies = [
-    'click', 'numpy', 'scipy', 'pyyaml', 'matplotlib', 'seaborn', 'pillow', 'ZODB', 'BTrees',
+    'click', 'numpy>=1.12.0', 'scipy>=0.14.0', 'pyyaml', 'matplotlib', 'seaborn', 'pillow', 'ZODB', 'BTrees',
     'persistent', 'transaction']
 extras = {
     'mpi': ['mpi4py']}
@@ -14,14 +14,15 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='boolsi',
-    version='0.9.5',
+    version='0.9.6',
     url='https://github.com/boolsi/boolsi',
     license='MIT',
     author='Vladyslav Oles, Anton Kukushkin',
     author_email='kukushkin.anton@gmail.com, vladyslav.oles@wsu.edu',
     description='BoolSi is a tool for distributed simulations and analysis of Boolean networks',
-    long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description='BoolSi is a command line tool for distributed simulations and analysis of '
+                     'synchronous Boolean networks.\n\n'
+                     'Read more at: https://github.com/boolsi/boolsi/blob/master/README.md',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     zip_safe=False,
