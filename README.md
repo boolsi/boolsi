@@ -426,7 +426,7 @@ update rules:
 
 Note: the update rule for a node is stored as a truth table, whose size 
 increases exponentially with the number of the nodes it depends on (its inputs). 
-Specifying more than 20 nodes in an update rule can put your system at risk 
+Specifying more than 20 nodes in an individual update rule can put your system at risk 
 of running out of memory.
 
 ### Initial state \[required\]
