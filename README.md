@@ -609,7 +609,7 @@ their magnitude in descending order, with statistically significant
 correlations printed first:
 
 ```
-node_1,node_2,rho,p-value
+node_1,node_2,rho,p_value
 CK,AHK,1.0,0.0
 CK,AHP,1.0,0.0
 CK,BARR,1.0,0.0
