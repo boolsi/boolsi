@@ -492,7 +492,7 @@ the last perturbation has occurred.
 
 ### Target state
 
-Section `target state` is only applicable when executing `target` 
+Section `target state` is only applicable (and required) when executing `target` 
 command. It defines the target state (or range of target states) of the network to look for 
 in simulations.
 
