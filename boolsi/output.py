@@ -213,15 +213,15 @@ def configure_plotting_functions(
     max_horizontal_layout_width = max_annotation_width
     max_stacked_layout_width = max_annotation_width
     longest_states = []
-    longest_time_step_labels = []
-    longest_time_step_labels_for_pdf = []
+    longest_time_labels = []
+    longest_time_labels_for_pdf = []
     stage_label = 'Preprocessing {}s for graphic output...'.format(simulation_result_name)
 
     with create_progressbar(n_simulation_results_to_plot, output_dirpath, is_single_process,
                             iterable=simulation_result_generator(), show_pos=True, show_eta=False,
                             stage_label=stage_label) as progressbar:
         for simulation_result_index, simulation_result in enumerate(progressbar):
-            states, fixed_nodes, perturbed_nodes_by_t, time_step_labels, _ = \
+            states, fixed_nodes, perturbed_nodes_by_t, time_labels, _ = \
                 extract_display_info(simulation_result)
             annotation_text = compile_plot_annotation_text(
                 simulation_result, simulation_result_index)
@@ -231,9 +231,9 @@ def configure_plotting_functions(
                 max_annotation_width = annotation_width
             if len(states) > len(longest_states):
                 longest_states = states
-                longest_time_step_labels = time_step_labels
+                longest_time_labels = time_labels
                 if simulation_result_index < pdf_page_limit:
-                    longest_time_step_labels_for_pdf = time_step_labels
+                    longest_time_labels_for_pdf = time_labels
 
             # Determine legend type for the simulation result.
             legend_type = bool(fixed_nodes), bool(perturbed_nodes_by_t)
@@ -266,7 +266,7 @@ def configure_plotting_functions(
     # labeling height.
     try:
         _, plot = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(), node_names,
-                              longest_time_step_labels, '')
+                              longest_time_labels, '')
     except ValueError:
         # Image failed to plot, no plotting will occur.
         raise PlottingFailedException
@@ -280,7 +280,7 @@ def configure_plotting_functions(
         # Measure y-axis labeling width to ensure equal PDF page
         # width.
         _, plot = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(),
-                              node_names, longest_time_step_labels_for_pdf, '')
+                              node_names, longest_time_labels_for_pdf, '')
         plt.draw()
         # Calculate width of space from y-axis to leftmost edge of its
         # label (in inches).
@@ -392,7 +392,7 @@ def output_simulation_results(
             csv_summaries_writer = csv.writer(csv_summaries_file)
             csv_writer = csv.writer(csv_file)
             csv_summaries_writer.writerow(summaries_csv_header)
-            csv_writer.writerow(['{}_id'.format(simulation_result_name), 'time_step'] + node_names)
+            csv_writer.writerow(['{}_id'.format(simulation_result_name), 'time'] + node_names)
 
         # Output preamble, if needed.
         if output_preamble:
@@ -417,14 +417,14 @@ def output_simulation_results(
                                 iterable=simulation_result_generator(), show_pos=True, show_eta=False,
                                 stage_label=stage_label) as progressbar:
             for simulation_result_index, simulation_result in enumerate(progressbar):
-                states, fixed_nodes, perturbed_nodes_by_t, time_step_labels, n_perturbations = \
+                states, fixed_nodes, perturbed_nodes_by_t, time_labels, n_perturbations = \
                     extract_display_info(simulation_result)
 
                 if (to_pdf and simulation_result_index < pdf_page_limit) or image_formats_and_dpis:
                     simulation_result_plot_annotation_text = compile_plot_annotation_text(
                         simulation_result, simulation_result_index)
                     fig, _ = _plot_states(states, fixed_nodes, perturbed_nodes_by_t, node_names,
-                                          time_step_labels, simulation_result_plot_annotation_text)
+                                          time_labels, simulation_result_plot_annotation_text)
 
                     if image_formats_and_dpis:
                         img_filename_base = "{0}{1:0{2}}".format(
@@ -449,7 +449,7 @@ def output_simulation_results(
                     simulation_result_id = csv_summaries_row[0]
                     csv_summaries_writer.writerow(csv_summaries_row)
                     csv_rows = write_states(states, fixed_nodes, perturbed_nodes_by_t,
-                                            simulation_result_id, time_step_labels)
+                                            simulation_result_id, time_labels)
                     csv_writer.writerows(csv_rows)
 
     if image_formats_and_dpis or to_pdf:
@@ -563,10 +563,10 @@ def output_attractors(
     # Define function for extracting display information from
     # aggregated attractor.
     def extract_display_info(aggregated_attractor):
-        time_step_labels = \
+        time_labels = \
             ['t'] + ['t+{}'.format(t) for t in range(1, len(aggregated_attractor.states))]
 
-        return aggregated_attractor.states, fixed_nodes, dict(), time_step_labels, 0
+        return aggregated_attractor.states, fixed_nodes, dict(), time_labels, 0
 
     to_plot = to_pdf or bool(image_formats_and_dpis)
 
@@ -711,7 +711,7 @@ def plot_annotation_only(fig, n_nodes, annotation_text):
 
 
 def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, states,
-                fixed_nodes, perturbed_nodes_by_t, node_names, time_step_labels, annotation_text):
+                fixed_nodes, perturbed_nodes_by_t, node_names, time_labels, annotation_text):
     """
     Plot states to a heatmap, annotate it, and mark fixed nodes and
     perturbations on it, adding them to the legend.
@@ -727,7 +727,7 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     :param perturbed_nodes_by_t: dict (by time step) of dicts (by node) of
         perturbed node states
     :param node_names: list of node names
-    :param time_step_labels: labels of states' time steps
+    :param time_labels: labels of states' time steps
     :param annotation_text: annotation of the states
     :return: (figure, plot)
     """
@@ -738,7 +738,7 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     fig.set_size_inches(plot_width, plot_height)
     fig.subplots_adjust(bottom=0, top=1, left=0, right=1, wspace=0, hspace=0)
     plot = sns.heatmap(
-        states, square=True, xticklabels=node_names, yticklabels=time_step_labels,
+        states, square=True, xticklabels=node_names, yticklabels=time_labels,
         cmap=[node_state_0_color, node_state_1_color], cbar=None, vmin=False, vmax=True,
         linecolor=gap_color, linewidths=gap_size_pts)
     plot.xaxis.set_label_text("node")
@@ -833,7 +833,7 @@ def plot_page_details(fig, page_width, xaxis_labeling_height, yaxis_labeling_wid
         xycoords='axes fraction', ha='center', va='top', weight='light', size=page_number_font_size)
 
 
-def write_states(states, fixed_nodes, perturbed_nodes_by_t, states_id, time_step_labels):
+def write_states(states, fixed_nodes, perturbed_nodes_by_t, states_id, time_labels):
     """
     Write states to a CSV-compatible list of rows, marking fixed nodes
     and perturbations.
@@ -842,15 +842,15 @@ def write_states(states, fixed_nodes, perturbed_nodes_by_t, states_id, time_step
     :param fixed_nodes: dict (by node) of fixed node states
     :param perturbed_nodes_by_t: dict (by time step) of dicts (by node) of node states
     :param states_id: identifier of the states
-    :param time_step_labels: labels of states' time steps
+    :param time_labels: labels of states' time steps
     :return: list of rows (each is a list)
     """
     states_id_subrow = [states_id] if states_id else []
 
     rows = []
     for t, state in enumerate(states):
-        time_step_label = time_step_labels[t] if time_step_labels else str(t)
-        rows.append(states_id_subrow + [time_step_label] +
+        time_label = time_labels[t] if time_labels else str(t)
+        rows.append(states_id_subrow + [time_label] +
                     format_state(state, t, fixed_nodes, perturbed_nodes_by_t))
 
     return rows
