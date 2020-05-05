@@ -1,3 +1,3 @@
-simulation_id,time_step,A,B,C
+simulation_id,time,A,B,C
 simulation1,0,1,1,1
 simulation1,1,0,1,1

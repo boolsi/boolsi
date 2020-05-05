@@ -561,7 +561,7 @@ the node was perturbed into this state at the corresponding time step.
 Simulation example:
 <!-- ./examples/output7_cambium1/simulations.csv -->
 ```
-simulation_id,time_step,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
+simulation_id,time,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
 simulation1,0,1,1,1,1,1,1,1,1,1,1,0,0_,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0
 simulation1,1,1,0,1,1,1,1,1,1,1,1,0,0_,0,1,0,1,1,0,0,0,1,0,0,0,1,0,1,0,0,1
 simulation1,2,1,0,0,1,1,1,0,0,1,1,0,0_,0,1,0,1,0,0,0,0,1*,0,0,0,1,0,1,1,1,1
@@ -578,7 +578,7 @@ simulation1,10,1,1,1,1,1,1,0,0,0,1,0,0_,0,1,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1
 <!-- ./examples/output8_cambium2/attractors.csv -->
 Attractor example:
 ```
-attractor_id,time_step,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
+attractor_id,time,CK0,CK,AHK,AHP,BARR,IPT,PIN,CKX,AARR,ERF,AHP6,TDIF,PXY,IAA0,IAA,BR,BZR1,STM,GA,GID1,ETHL,ARF,HB8,TMO5,WOX4,LOG3,DELL,WRKY,LHW,ENDO
 attractor1,t,0,0,0,0,0,0,0,1,0,0,1,0_,0,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
 ...
 attractor15,t,0,1,0,0,0,0,0,0,0,1,1,0_,0,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0
