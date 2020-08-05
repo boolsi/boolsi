@@ -5,11 +5,13 @@ RUN apt update
 
 RUN apt install openmpi-bin -y
 
-RUN conda install mpi4py numpy scipy Click PyYAML matplotlib seaborn pillow BTrees persistent transaction
+RUN conda install mpi4py numpy scipy Click PyYAML matplotlib seaborn pillow BTrees persistent transaction pytest
 
 RUN pip install ZODB
 
 RUN python ./setup.py install
+
+RUN py.test ./tests
 
 RUN boolsi simulate examples/example1.yaml -t 5
 
