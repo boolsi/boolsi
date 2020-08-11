@@ -74,12 +74,6 @@ def close_and_cleanup_db(db_conn, db_dir):
             # Remove database files.
             db_conn.close()
             db_storage.cleanup()
-
-            # Remove database directory if empty.
-            try:
-                os.rmdir(db_dir)
-            except OSError:
-                pass
         except Exception as e:
             logging.getLogger().error('Failed to close or cleanup DB: {}'.format(e))
 
