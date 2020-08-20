@@ -272,8 +272,8 @@ def configure_plotting_functions(
         raise PlottingFailedException
     else:
         plt.draw()
-        # Calculate height of space from x-axis to bottom edge of its
-        # label (in inches).
+        # Calculate height of space between x-axis and bottom edge of
+        # its label (in inches).
         xaxis_labeling_height = labeling_size_without_ticklabels + max(
             label.get_window_extent().height / fig.dpi for label in plot.get_xticklabels())
 
@@ -282,8 +282,8 @@ def configure_plotting_functions(
         _, plot = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(),
                               node_names, longest_time_labels_for_pdf, '')
         plt.draw()
-        # Calculate width of space from y-axis to leftmost edge of its
-        # label (in inches).
+        # Calculate width of space between y-axis and leftmost edge of
+        # its label (in inches).
         yaxis_labeling_width = labeling_size_without_ticklabels + max(
             label.get_window_extent().width / fig.dpi for label in plot.get_yticklabels())
 
@@ -291,8 +291,9 @@ def configure_plotting_functions(
 
         # Configure function for plotting annotation of simulation
         # problems with no attractor found.
-        _plot_annotation_only = partial(plot_annotation_only, fig=fig, n_nodes=len(node_names),
-                                        annotation_text=no_attractor_plot_annotation_text)
+        _plot_annotation_only = partial(
+            plot_annotation_only, fig=fig, n_nodes=len(node_names),
+            annotation_text=no_attractor_plot_annotation_text)
         # Configure function for plotting states.
         _plot_states = partial(
             plot_states, fig, layout_is_stacked, legend_heights, xaxis_labeling_height)
@@ -720,8 +721,8 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     :param layout_is_stacked: whether to stack legend below annotation
     :param legend_heights: dict with legend heights (in inches) for all
         possible legend types
-    :param xaxis_labeling_height: height of space from x-axis to bottom
-        edge of its label (in inches)
+    :param xaxis_labeling_height: height of space between x-axis and
+        bottom edge of its label (in inches)
     :param states: states to plot
     :param fixed_nodes: dict (by node) of fixed node states
     :param perturbed_nodes_by_t: dict (by time step) of dicts (by node) of
@@ -737,23 +738,33 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     # Plot states.
     fig.set_size_inches(plot_width, plot_height)
     fig.subplots_adjust(bottom=0, top=1, left=0, right=1, wspace=0, hspace=0)
-    plot = sns.heatmap(
+    ax = sns.heatmap(
         states, square=True, xticklabels=node_names, yticklabels=time_labels,
         cmap=[node_state_0_color, node_state_1_color], cbar=None, vmin=False, vmax=True,
         linecolor=gap_color, linewidths=gap_size_pts)
-    plot.xaxis.set_label_text("node")
-    plot.yaxis.set_label_text("time", rotation=90)
-    plt.xticks(rotation=90)
+    ax.xaxis.set_label_text("node")
+    ax.yaxis.set_label_text("time", rotation=90)
     plt.yticks(rotation=0)
+    # Plot another set of x-labels on the top if the plot is
+    # long enough.
+    labeling_top_xaxis = len(states) > 20
+    if labeling_top_xaxis:
+        ax_top = ax.twiny()
+        ax_top.set_xlabel(ax.get_xlabel())
+        ax_top.set_xticks(ax.get_xticks())
+        ax_top.set_xticklabels(ax.get_xticklabels())
+        ax_top.set_xlim(ax.get_xlim())
+        sns.despine(left=True, bottom=True)
+    plt.xticks(rotation=90)
 
     # Plot fixed nodes.
     for fixed_node in fixed_nodes:
-        plot.add_patch(
+        ax.add_patch(
             Rectangle((fixed_node + 0.25 * gap_size_fraction, 0.25 * gap_size_fraction),
                       1 - 0.5 * gap_size_fraction, len(states) - 0.5 * gap_size_fraction,
                       fill=False, edgecolor=fixed_node_color, linewidth=0.5 * gap_size_pts))
         for t in range(len(states) - 1):
-            plot.add_patch(
+            ax.add_patch(
                 Rectangle((fixed_node + 0.25 * gap_size_fraction, t + 1 - 0.5 * gap_size_fraction),
                           1 - 0.25 * gap_size_fraction, gap_size_fraction,
                           fill=True, facecolor=fixed_node_color, linestyle='None'))
@@ -761,25 +772,23 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     # Plot perturbations.
     for t in perturbed_nodes_by_t:
         for node in perturbed_nodes_by_t[t]:
-            plot.add_patch(
+            ax.add_patch(
                 Circle((node + 0.5, t + 0.5), perturbation_marker_radius_fraction,
                        fill=True, facecolor=perturbation_color, linestyle='None'))
 
     # Initialize vertical offset between page annotation and plot top
     # (in inches).
     annotation_v_offset = 0
-    # Provided legend heights means it's actual plotting and not
+    # Provided legend heights means this is an actual plotting and not
     # a test run for checking label dimensions.
     if legend_heights:
         # Determine legend type.
         legend_type = (bool(fixed_nodes), bool(perturbed_nodes_by_t))
         # Calculate y-coordinate of legend bottom (in axes coordinates).
         legend_bottom_y = 1 + (legend_frame_pad + legend_v_pad) / plot_height
-        # Plot another set of x-labels on the top if the plot is
-        # long enough, and account for their height when plotting
+        # Account for the height of top x-axis labeling when plotting
         # legend and annotation.
-        if len(states) > 20:
-            plot.tick_params(labeltop=True)
+        if labeling_top_xaxis:
             annotation_v_offset += xaxis_labeling_height
             legend_bottom_y += xaxis_labeling_height / plot_height
         # Set legend position and alignment.
@@ -799,7 +808,7 @@ def plot_states(fig, layout_is_stacked, legend_heights, xaxis_labeling_height, s
     plt.text(0, -(annotation_v_pad + annotation_v_offset) / cell_size, annotation_text,
              **plot_annotation_kwargs)
 
-    return fig, plot
+    return fig, ax
 
 
 def plot_page_details(fig, page_width, xaxis_labeling_height, yaxis_labeling_width,
@@ -809,10 +818,10 @@ def plot_page_details(fig, page_width, xaxis_labeling_height, yaxis_labeling_wid
 
     :param fig: figure to plot to
     :param page_width: PDF page width to enforce (in inches)
-    :param xaxis_labeling_height: height of space from x-axis to bottom
-        edge of its label (in inches)
-    :param yaxis_labeling_width: width of space from y-axis to leftmost
-        edge of its label (in inches)
+    :param xaxis_labeling_height: height of space between x-axis and
+        bottom edge of its label (in inches)
+    :param yaxis_labeling_width: width of space between y-axis and
+        leftmost edge of its label (in inches)
     :param page_number_text: string with PDF page number
     :param xaxis_labeling_is_visible: whether to account for
         xaxis_labeling_height
