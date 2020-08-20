@@ -265,7 +265,7 @@ def configure_plotting_functions(
     # Check if longest states can be plotted and measure x-axis
     # labeling height.
     try:
-        _, plot = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(), node_names,
+        _, ax = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(), node_names,
                               longest_time_labels, '')
     except ValueError:
         # Image failed to plot, no plotting will occur.
@@ -275,17 +275,17 @@ def configure_plotting_functions(
         # Calculate height of space between x-axis and bottom edge of
         # its label (in inches).
         xaxis_labeling_height = labeling_size_without_ticklabels + max(
-            label.get_window_extent().height / fig.dpi for label in plot.get_xticklabels())
+            label.get_window_extent().height / fig.dpi for label in ax.get_xticklabels())
 
         # Measure y-axis labeling width to ensure equal PDF page
         # width.
-        _, plot = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(),
+        _, ax = plot_states(fig, False, dict(), 0, longest_states, dict(), dict(),
                               node_names, longest_time_labels_for_pdf, '')
         plt.draw()
         # Calculate width of space between y-axis and leftmost edge of
         # its label (in inches).
         yaxis_labeling_width = labeling_size_without_ticklabels + max(
-            label.get_window_extent().width / fig.dpi for label in plot.get_yticklabels())
+            label.get_window_extent().width / fig.dpi for label in ax.get_yticklabels())
 
         fig.clear()
 
@@ -982,7 +982,7 @@ def output_node_correlations(Rho,
                 fmt='', vmin=-1, vmax=1)
             # Plot labels for nonsignificant and absent correlations in
             # thin fontweight.
-            plot = sns.heatmap(
+            ax = sns.heatmap(
                 Rho_for_plotting, xticklabels=node_names, yticklabels=flipped_node_names,
                 cmap=plot_cmap, cbar=False, mask=flipped_rho_caption_mask, annot=captions,
                 annot_kws={'weight': 'light', 'alpha': 0.9}, fmt='', vmin=-1, vmax=1)
@@ -997,9 +997,9 @@ def output_node_correlations(Rho,
                 right_x = i + 1 - border_width_fraction / 2
                 lower_y = len(node_names) - i - border_height_fraction / 2
                 upper_y = len(node_names) - i - 1 + border_height_fraction / 2
-                plot.plot([left_x, right_x], [upper_y, lower_y], color=service_color,
+                ax.plot([left_x, right_x], [upper_y, lower_y], color=service_color,
                           linewidth=diagonal_border_linewidth)
-                plot.add_patch(Rectangle([left_x, upper_y], 1 - border_width_fraction,
+                ax.add_patch(Rectangle([left_x, upper_y], 1 - border_width_fraction,
                                          1 - border_height_fraction, fill=None,
                                          color=service_color, linewidth=diagonal_border_linewidth))
 
@@ -1050,7 +1050,7 @@ def output_node_correlations(Rho,
                         legend.get_window_extent().height / fig.dpi + legend_v_pad
 
             # Plot annotation.
-            plot.annotate(
+            ax.annotate(
                 annotation_text, xy=(0, 1), xytext=(0, annotation_v_offset * ppi),
                 xycoords=('axes fraction', 'axes fraction'), textcoords='offset points',
                 **plot_annotation_kwargs)
