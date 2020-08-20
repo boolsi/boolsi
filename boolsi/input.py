@@ -24,9 +24,9 @@ constant_node_state_range_text = "either '0' or '1'"
 limited_node_state_range_text = "either '0', '1', or 'any'"
 full_node_state_range_text = "either '0', '1', 'any', '0?', '1?', or 'any?'"
 
-nonconstant_node_state_pattern = re.compile('^(0\?|1\?|any\??)$', re.I)
+nonconstant_node_state_pattern = re.compile(r'^(0\?|1\?|any\??)$', re.I)
 true_or_false_node_state_pattern = re.compile('^any$', re.I)
-maybe_true_or_false_node_state_pattern = re.compile('^any\?$', re.I)
+maybe_true_or_false_node_state_pattern = re.compile(r'^any\?$', re.I)
 update_rule_reserved_symbol_pattern = re.compile(r'\(|\)|,|\b(?:and|or|not|majority)\b', re.I)
 
 
@@ -57,7 +57,7 @@ class UniqueKeyLoader(BaseLoader):
         mapping = {}
         for key_node, value_node in node.value:
             key = self.construct_object(key_node, deep=deep)
-            if not isinstance(key, collections.Hashable):
+            if not isinstance(key, collections.abc.Hashable):
                 raise ConstructorError("while constructing a mapping", node.start_mark,
                         "found unhashable key", key_node.start_mark)
 
@@ -219,7 +219,7 @@ def parse_raw_input_node_names(raw_input_node_names):
         # demarcators to parse node names from update rules.
         # Whitespaces are forbidden to prevent space-padded
         # demarcators inside the node names.
-        if re.search('\s|\(|\)|,', node_name):
+        if re.search(r'\s|\(|\)|,', node_name):
             err_msg = compile_err_msg(
                 "Name cannot contain whitespaces, parentheses, or commas.",
                 {section_name_text: section_name, node_name_text: node_name})
@@ -673,7 +673,7 @@ def parse_raw_input_time_steps(raw_input_time_steps):
         if not input_interval:
             continue
 
-        time_step_match = re.match("^(\d+)(?:\s*-\s*(\d+))?$", input_interval)
+        time_step_match = re.match(r'^(\d+)(?:\s*-\s*(\d+))?$', input_interval)
 
         if time_step_match is None:
 
@@ -758,7 +758,7 @@ def parse_input_update_rules(input_update_rules, node_names, section_location_di
                     raise ValueError(err_msg)
 
         # Validate majority function is only used for a call.
-        if re.search('majority(?!\()', update_rule, re.I):
+        if re.search(r'majority(?!\()', update_rule, re.I):
             err_msg = compile_err_msg(
                 'Majority function not followed by parentheses.', section_location_dict)
 
@@ -785,7 +785,7 @@ def parse_input_update_rules(input_update_rules, node_names, section_location_di
                 raise ValueError(err_msg)
 
         # Validate no trailing commas in majority call.
-        if re.search(',\s*\)', update_rule):
+        if re.search(r',\s*\)', update_rule):
             err_msg = compile_err_msg(
                 'Last argument missing in majority function call.', section_location_dict)
 
