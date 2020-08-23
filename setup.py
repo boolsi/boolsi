@@ -14,7 +14,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='boolsi',
-    version='1.0.3',
+    version='1.0.4',
     url='https://github.com/boolsi/boolsi',
     license='MIT',
     author='Vladyslav Oles, Anton Kukushkin',
