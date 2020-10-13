@@ -624,13 +624,16 @@ If you found a bug or want to suggest an enhancement, feel free to create a [Git
 
 If you would like to cite BoolSi, please use the following:
 <blockquote>
-<p>Oles, V., & Kukushkin, A. (2019). BoolSi: a tool for distributed simulations and analysis of Boolean networks. <i>arXiv preprint arXiv:1910.03736</i>.</p>
+<p>Oles, V., & Kukushkin, A. (2020). BoolSi: a tool for distributed simulations and analysis of Boolean networks. <i>Journal of Open Research Software, 8</i>(1).</p>
 </blockquote>
-<pre><code>@article{boolsi2019,
+<pre><code>@article{oles2020boolsi,
 	title={BoolSi: a tool for distributed simulations and analysis of Boolean networks},
 	author={Oles, Vladyslav and Kukushkin, Anton},
-	journal={arXiv preprint arXiv:1910.03736},
-	year={2019}
+	journal={Journal of Open Research Software},
+	volume={8},
+	number={1},
+	year={2020},
+	publisher={Ubiquity Press}
 }
 </code></pre>
 
