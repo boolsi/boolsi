@@ -68,10 +68,11 @@ class FileOutputProgressBar(ProgressBar):
             click._termui_impl.BEFORE_BAR = ''
             click._termui_impl.AFTER_BAR = ''
 
-        ProgressBar.__init__(self, iterable, length, fill_char, empty_char,
-                             bar_template, info_sep, show_eta,
-                             show_percent, show_pos, item_show_func,
-                             label, file, color, width)
+        ProgressBar.__init__(
+            self, iterable, length=length, fill_char=fill_char, empty_char=empty_char,
+            bar_template=bar_template, info_sep=info_sep, show_eta=show_eta,
+            show_percent=show_percent, show_pos=show_pos, item_show_func=item_show_func,
+            label=label, file=file, color=color, width=width)
 
         # This progress bar is never hidden
         self.is_hidden = False
