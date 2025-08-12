@@ -1,6 +1,7 @@
 """
 Reads and validates input files.
 """
+import sys
 import collections
 import re
 import logging
@@ -879,13 +880,16 @@ def build_truth_table_from_safe_update_rule(safe_update_rule, predecessor_nodes,
 
     for predecessor_node_states in itertools.product((False, True), repeat=len(predecessor_nodes)):
         for i, predecessor_node in enumerate(predecessor_nodes):
-            exec("{} = {}".format(safe_node_names[predecessor_node], predecessor_node_states[i]))
+            assign_str = "{} = {}".format(safe_node_names[predecessor_node], predecessor_node_states[i])
+            exec(assign_str, locals=sys._getframe().f_locals)
         try:
             truth_table[predecessor_node_states] = eval(safe_update_rule)
         # It seems that only SyntaxError exceptions are possible after
         # the validations, but just to be on the safe side.
-        except:
-
+        except Exception as e:
+            print(e)
+            print(truth_table)
+            print(f'{safe_node_names=}, {predecessor_nodes=}, {predecessor_node_states=}, {safe_update_rule=}')
             raise ValueError(err_msg)
 
         if truth_table[predecessor_node_states] not in {False, True}:
