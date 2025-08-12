@@ -886,10 +886,7 @@ def build_truth_table_from_safe_update_rule(safe_update_rule, predecessor_nodes,
             truth_table[predecessor_node_states] = eval(safe_update_rule)
         # It seems that only SyntaxError exceptions are possible after
         # the validations, but just to be on the safe side.
-        except Exception as e:
-            print(e)
-            print(truth_table)
-            print(f'{safe_node_names=}, {predecessor_nodes=}, {predecessor_node_states=}, {safe_update_rule=}')
+        except BaseException as e:
             raise ValueError(err_msg)
 
         if truth_table[predecessor_node_states] not in {False, True}:
