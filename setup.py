@@ -18,7 +18,7 @@ setup(
     url='https://github.com/boolsi/boolsi',
     license='MIT',
     author='Vladyslav Oles, Anton Kukushkin',
-    author_email='kukushkin.anton@gmail.com, vladyslav.oles@wsu.edu',
+    author_email='vladyslav.oles@gmail.com, kukushkin.anton@gmail.com',
     description='BoolSi is a tool for distributed simulations and analysis of Boolean networks',
     long_description='BoolSi is a command line tool for distributed simulations and analysis of '
                      'synchronous Boolean networks.\n\n'
