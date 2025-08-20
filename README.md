@@ -1,9 +1,8 @@
 # BoolSi
 
 BoolSi is a command line tool for distributed simulations 
-and analysis of synchronous Boolean networks. It uses MPI 
-standard to allow execution on computational clusters, as well as 
-parallel processing on a single computer.
+and analysis of synchronous Boolean networks. It uses MPI to
+parallelize across multiple compute nodes and/or cores.
 
 <img src="./examples/output1_glider/simulations_SVG/simulation1.svg"/>
 
