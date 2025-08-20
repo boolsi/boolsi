@@ -14,7 +14,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='boolsi',
-    version='1.0.4',
+    version='1.0.5',
     url='https://github.com/boolsi/boolsi',
     license='MIT',
     author='Vladyslav Oles, Anton Kukushkin',
@@ -48,6 +48,10 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: 3 :: Only',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
